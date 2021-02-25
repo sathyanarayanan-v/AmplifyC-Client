@@ -1,6 +1,11 @@
 <template>
   <v-app>
-    <v-app-bar app color="#f4f7f8" elevation="0">
+    <v-app-bar
+      v-if="!nonAppBarRoutes.includes($route.name)"
+      app
+      color="#f4f7f8"
+      elevation="0"
+    >
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -27,7 +32,9 @@ export default Vue.extend({
 
   components: {},
 
-  data: () => ({}),
+  data: () => ({
+    nonAppBarRoutes: ["amplifyc-login"],
+  }),
 });
 </script>
 <style>
