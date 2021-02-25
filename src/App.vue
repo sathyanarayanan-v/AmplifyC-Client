@@ -1,61 +1,20 @@
 <template>
   <v-app>
-    <v-app-bar
-      v-if="!nonAppBarRoutes.includes($route.name)"
-      app
-      color="#f4f7f8"
-      elevation="0"
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="mr-2"
-          contain
-          src="./assets/logo.png"
-          transition="scale-transition"
-          width="120"
-        />
-      </div>
-    </v-app-bar>
-
-    <v-main style="background-color:#f4f7f8">
-      <router-view />
-    </v-main>
+    <amplifyc-toolbar />
+    <amplifyc-main-layout />
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-
+import TheToolbar from "./layout/TheToolbar.vue";
+import TheMainLayout from "./layout/TheMainLayout.vue";
 export default Vue.extend({
   name: "App",
-
-  components: {},
-
-  data: () => ({
-    nonAppBarRoutes: ["amplifyc-login"],
-  }),
+  components: {
+    "amplifyc-toolbar": TheToolbar,
+    "amplifyc-main-layout": TheMainLayout,
+  },
 });
 </script>
-<style>
-* {
-  font-family: "Montserrat", sans-serif;
-  font-size: 17px;
-}
-.centered {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
-}
-h2 {
-  font-size: 24px;
-}
-.edge-12 {
-  border-radius: 12px !important;
-}
-h3 {
-  font-size: 20px;
-}
-</style>
+<style></style>
