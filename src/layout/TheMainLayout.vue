@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 export default Vue.extend({
-  name: "TheMainLayout",
-});
+  name: 'TheMainLayout'
+})
 </script>
 
 <style></style>

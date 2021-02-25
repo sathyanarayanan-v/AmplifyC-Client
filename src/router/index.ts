@@ -1,21 +1,21 @@
-import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
-import AmplifyCLogin from "../views/Login.vue";
+import Vue from 'vue'
+import VueRouter, { RouteConfig } from 'vue-router'
+import AmplifyCLogin from '../views/Login.vue'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
-    path: "/login",
+    path: '/login',
     component: AmplifyCLogin,
-    name: "amplifyc-login",
-  },
-];
+    name: 'amplifyc-login'
+  }
+]
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
-  routes,
-});
+  routes
+})
 
-export default router;
+export default router
