@@ -15,10 +15,11 @@
 </template>
 
 <script>
-import Vue from 'vue'
-export default Vue.extend({
-  name: 'TheMainLayout'
-})
+import { VueStrong } from '../typedVue'
+import Component from 'vue-class-component'
+
+@Component
+export default class TheMainLayout extends VueStrong {}
 </script>
 
 <style></style>

@@ -2,19 +2,21 @@
   <v-app>
     <amplifyc-toolbar />
     <amplifyc-main-layout />
+    <amplifyc-notification />
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { VueStrong } from './typedVue'
 import TheToolbar from './layout/TheToolbar.vue'
 import TheMainLayout from './layout/TheMainLayout.vue'
-export default Vue.extend({
+import TheNotification from './components/Notifications.vue'
+export default VueStrong.extend({
   name: 'App',
   components: {
     'amplifyc-toolbar': TheToolbar,
-    'amplifyc-main-layout': TheMainLayout
+    'amplifyc-main-layout': TheMainLayout,
+    'amplifyc-notification': TheNotification
   }
 })
 </script>
-<style></style>

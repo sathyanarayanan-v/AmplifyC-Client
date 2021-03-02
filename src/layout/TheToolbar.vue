@@ -16,13 +16,14 @@
   </v-app-bar>
 </template>
 
-<script>
-import Vue from 'vue'
-export default Vue.extend({
-  data: () => ({
-    nonAppBarRoutes: ['amplifyc-login']
-  })
-})
+<script lang="ts">
+import Component from 'vue-class-component'
+import { VueStrong } from '../typedVue'
+
+@Component
+export default class TheToolBar extends VueStrong {
+  nonAppBarRoutes = ['amplifyc-login']
+}
 </script>
 
 <style></style>
