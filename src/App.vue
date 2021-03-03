@@ -20,3 +20,8 @@ export default VueStrong.extend({
   }
 })
 </script>
+<style lang="scss">
+.v-messages__message {
+  line-height: 14px !important;
+}
+</style>

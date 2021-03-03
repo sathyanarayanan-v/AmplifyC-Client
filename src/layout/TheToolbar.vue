@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar v-if="!nonAppBarRoutes.includes($route.name)" app color="#f4f7f8" elevation="0">
+  <v-app-bar v-if="!nonAppBarRoutes.includes($route.name)" app height="80" color="#f4f7f8" elevation="0">
     <div class="d-flex align-center">
       <v-img
         alt="Vuetify Logo"
@@ -22,7 +22,11 @@ import { VueStrong } from '../typedVue'
 
 @Component
 export default class TheToolBar extends VueStrong {
-  nonAppBarRoutes = ['amplifyc-login']
+  nonAppBarRoutes = [
+    'amplifyc-my-account-login',
+    'amplifyc-my-account-forgot-password-code-gen',
+    'amplifyc-my-account-forgot-password-validate-code'
+  ]
 }
 </script>
 

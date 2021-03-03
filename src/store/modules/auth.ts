@@ -1,13 +1,13 @@
 import { IAuthState } from '@/interfaces/store/auth'
 
-const actions = {}
+const actions = {
+  login({ commit }) {
+    commit('hello')
+  }
+}
 const mutations = {}
 const state: IAuthState = {
-  currentUser: {
-    password: '',
-    userId: '',
-    username: ''
-  }
+  currentUser: null
 }
 export default {
   actions,

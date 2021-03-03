@@ -1,14 +1,34 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import AmplifyCLogin from '../views/Login.vue'
+import AmplifyCLogin from '../components/Login.vue'
+import AmplifyCMyAccount from '../views/MyAccount.vue'
+import AmplifyCForgotPasswordCodeGen from '../components/ForgotPasswordCodeGen.vue'
+import AmplifyCValidateForgotPasswordCode from '../components/ValidateForgotPasswordCode.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/login',
-    component: AmplifyCLogin,
-    name: 'amplifyc-login'
+    path: '/my-account',
+    component: AmplifyCMyAccount,
+    name: 'amplifyc-my-account',
+    children: [
+      {
+        path: 'login',
+        component: AmplifyCLogin,
+        name: 'amplifyc-my-account-login'
+      },
+      {
+        path: 'forgot-password',
+        component: AmplifyCForgotPasswordCodeGen,
+        name: 'amplifyc-my-account-forgot-password-code-gen'
+      },
+      {
+        path: 'forgot-password/verify-code',
+        component: AmplifyCValidateForgotPasswordCode,
+        name: 'amplifyc-my-account-forgot-password-validate-code'
+      }
+    ]
   }
 ]
 
