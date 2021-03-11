@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from 'axios'
 const baseURL = process.env.VUE_APP_API_ENDPOINT
 const axiosInstance = axios.create({ baseURL })
-
+const UNAUTHORIZED = 401
+import router from '@/router'
 const responseHandler = (res: AxiosResponse<any>): Promise<any> => {
   if (res.data.error && res.data.error === true) {
     // store.dispatch('SOCKET_newNotification', {
@@ -16,6 +17,9 @@ const responseHandler = (res: AxiosResponse<any>): Promise<any> => {
   return res.data
 }
 const errorHandler = (err: any) => {
+  if (err.status === UNAUTHORIZED) {
+    router.push({ name: 'amplifyc-my-account-login' })
+  }
   //   store.dispatch('SOCKET_newNotification', {
   //     _id: uuidv4().replace('-', ''),
   //     messageMeta: {
@@ -24,6 +28,10 @@ const errorHandler = (err: any) => {
   //     message: err.response.data.payload ? err.response.data.payload : 'Network Error. Please try again later.',
   //     local: true
   //   })
+  console.log(typeof err.response.data)
+  if (typeof err.response.data === 'string') {
+    return Promise.reject(err.response.data)
+  }
   return Promise.reject({ ...err.response.data })
 }
 axiosInstance.interceptors.request.use(config => {

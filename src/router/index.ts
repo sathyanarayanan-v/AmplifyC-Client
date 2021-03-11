@@ -5,34 +5,42 @@ import AmplifyCMyAccount from '../views/MyAccount.vue'
 import AmplifyCForgotPasswordCodeGen from '../components/ForgotPasswordCodeGen.vue'
 import AmplifyCValidateForgotPasswordCode from '../components/ValidateForgotPasswordCode.vue'
 import AmplifyCCreateAccount from '../components/CreateAccount.vue'
+import AmplifyCMainLayout from '@/layout/TheMainLayout.vue'
+import { AuthGuard } from './authGuard'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/my-account',
-    component: AmplifyCMyAccount,
-    name: 'amplifyc-my-account',
+    path: '/',
+    component: AmplifyCMainLayout,
     children: [
       {
-        path: 'login',
-        component: AmplifyCLogin,
-        name: 'amplifyc-my-account-login'
-      },
-      {
-        path: 'forgot-password',
-        component: AmplifyCForgotPasswordCodeGen,
-        name: 'amplifyc-my-account-forgot-password-code-gen'
-      },
-      {
-        path: 'forgot-password/verify-code',
-        component: AmplifyCValidateForgotPasswordCode,
-        name: 'amplifyc-my-account-forgot-password-validate-code'
-      },
-      {
-        path: 'new',
-        component: AmplifyCCreateAccount,
-        name: 'amplifyc-my-account-new'
+        path: 'my-account',
+        component: AmplifyCMyAccount,
+        name: 'amplifyc-my-account',
+        children: [
+          {
+            path: 'login',
+            component: AmplifyCLogin,
+            name: 'amplifyc-my-account-login'
+          },
+          {
+            path: 'forgot-password',
+            component: AmplifyCForgotPasswordCodeGen,
+            name: 'amplifyc-my-account-forgot-password-code-gen'
+          },
+          {
+            path: 'forgot-password/verify-code',
+            component: AmplifyCValidateForgotPasswordCode,
+            name: 'amplifyc-my-account-forgot-password-validate-code'
+          },
+          {
+            path: 'new',
+            component: AmplifyCCreateAccount,
+            name: 'amplifyc-my-account-new'
+          }
+        ]
       }
     ]
   }

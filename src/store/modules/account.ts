@@ -16,6 +16,10 @@ const actions = {
     const { username } = loginResponse
     localStorage.setItem('token', loginResponse.token)
     commit('setCurrentUser', { username })
+  },
+  async getCurrentUser({ commit }: ICommit) {
+    const currentUser: Partial<IUser> = await axiosInstance.get(myAccountAPI.getCurrentUser())
+    commit('setCurrentUser', currentUser)
   }
 }
 const state: IAuthState = {
