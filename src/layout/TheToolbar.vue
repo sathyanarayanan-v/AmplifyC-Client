@@ -25,7 +25,8 @@ export default class TheToolBar extends VueStrong {
   nonAppBarRoutes = [
     'amplifyc-my-account-login',
     'amplifyc-my-account-forgot-password-code-gen',
-    'amplifyc-my-account-forgot-password-validate-code'
+    'amplifyc-my-account-forgot-password-validate-code',
+    'amplifyc-my-account-new'
   ]
 }
 </script>

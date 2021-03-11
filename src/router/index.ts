@@ -4,6 +4,7 @@ import AmplifyCLogin from '../components/Login.vue'
 import AmplifyCMyAccount from '../views/MyAccount.vue'
 import AmplifyCForgotPasswordCodeGen from '../components/ForgotPasswordCodeGen.vue'
 import AmplifyCValidateForgotPasswordCode from '../components/ValidateForgotPasswordCode.vue'
+import AmplifyCCreateAccount from '../components/CreateAccount.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes: Array<RouteConfig> = [
         path: 'forgot-password/verify-code',
         component: AmplifyCValidateForgotPasswordCode,
         name: 'amplifyc-my-account-forgot-password-validate-code'
+      },
+      {
+        path: 'new',
+        component: AmplifyCCreateAccount,
+        name: 'amplifyc-my-account-new'
       }
     ]
   }

@@ -46,7 +46,7 @@ export default class LoginForm extends VueStrong {
 
   @Emit()
   createAccount() {
-    this.$router.push({ name: 'amplifyc-login' })
+    this.$router.push({ name: 'amplifyc-my-account-new' })
   }
 
   @Emit()

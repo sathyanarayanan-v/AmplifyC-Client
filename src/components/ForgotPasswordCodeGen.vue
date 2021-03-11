@@ -1,7 +1,9 @@
 <template>
   <v-card height="100%" class="pa-4 edge-12">
     <v-card-text style="height:100%" class="d-flex justify-space-between flex-column">
-      <p class="font-weight-bold text-center" color="#000">Verification code is sent to registered email address</p>
+      <p class="font-weight-bold text-center" color="#000">
+        Verification code will be sent to registered email address
+      </p>
       <div class="text-fields my-auto">
         <v-form v-model="valid">
           <v-text-field outlined label="E-mail" :rules="userEmailRules" v-model="email" class="mb-4"></v-text-field>

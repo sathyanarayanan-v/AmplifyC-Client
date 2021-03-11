@@ -31,9 +31,7 @@ import { VueStrong } from '../typedVue'
 export default class ValidateForgotPasswordCode extends VueStrong {
   valid = false
   code = ''
-  sixDigitCodeRules = [
-    (value: string) => (!!value && value.length === 6 && !isNaN(+value)) || 'Enter valid 6-digit code'
-  ]
+  sixDigitCodeRules = [(value: string) => (!!value && value.length === 6 && !isNaN(+value)) || 'Enter valid code']
 
   public checkVerificationCode() {
     console.log('checking code')
