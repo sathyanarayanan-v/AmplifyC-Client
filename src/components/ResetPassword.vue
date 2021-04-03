@@ -13,26 +13,48 @@
         <v-card height="100%" class="pa-4 edge-12">
           <v-card-text style="height:100%" class="d-flex justify-space-between flex-column">
             <p class="font-weight-bold text-center" color="#000">
-              Please enter the verification code sent to your mail address
+              Please enter your new password
             </p>
             <div class="text-fields my-auto">
               <v-form v-model="valid">
                 <v-text-field
                   outlined
-                  label="Code"
-                  :rules="sixDigitCodeRules"
-                  v-model="code"
+                  :rules="pwdRules"
+                  label="Password"
+                  v-model="pwd"
+                  :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                  :type="showPassword ? 'text' : 'password'"
+                  @click:append="showPassword = !showPassword"
+                  class="mb-4"
+                ></v-text-field>
+                <v-text-field
+                  outlined
+                  label="Confirm password"
+                  :type="showPassword ? 'text' : 'password'"
+                  :rules="[
+                    value => {
+                      if (!value) {
+                        return 'Confirm password is required'
+                      }
+
+                      if (value !== this.pwd) {
+                        return 'Passwords do not match'
+                      }
+                      return true
+                    }
+                  ]"
+                  v-model="cnfrmpwd"
                   class="mb-4"
                 ></v-text-field>
                 <v-btn
                   :disabled="!valid"
-                  @click.prevent="checkVerificationCode"
+                  @click.prevent="resetPassword"
                   type="submit"
                   color="success"
                   class="text-capitalize mr-3"
                 >
-                  <h4>Verify</h4>
-                  <v-icon class="ml-2">mdi-shield-check</v-icon>
+                  <v-icon class="mr-2">mdi-shield-check</v-icon>
+                  <h4>Reset Password</h4>
                 </v-btn>
               </v-form>
             </div>
@@ -49,31 +71,39 @@ import { mapState } from 'vuex'
 import { IRootState } from '../interfaces/store/root'
 import { VueStrong } from '../typedVue'
 
-@Component<ValidateForgotPasswordCode>({
+@Component({
   created() {
     if (!this.fpEmail) {
       this.$router.push({ name: 'amplifyc-my-account-forgot-password-code-gen' })
     }
   },
-
   computed: {
     ...mapState({
       fpEmail: state => (state as IRootState).auth.fpEmail
     })
   }
 })
-export default class ValidateForgotPasswordCode extends VueStrong {
+export default class ResetPassword extends VueStrong {
   valid = false
-  code = ''
+  pwd = ''
+  cnfrmpwd = ''
   fpEmail!: string
-  sixDigitCodeRules = [(value: string) => (!!value && value.length === 6 && !isNaN(+value)) || 'Enter valid code']
+  showPassword = false
+  pwdRules = [
+    (value: string) => {
+      if (!value) {
+        return 'Password is required'
+      }
+      return true
+    }
+  ]
 
-  public async checkVerificationCode() {
+  async resetPassword() {
     try {
-      await this.$store.dispatch('validateFpCode', { email: this.fpEmail, code: this.code })
-      this.$router.push({ name: 'amplifyc-my-account-forgot-password-reset-password' })
+      await this.$store.dispatch('resetPassword', { pwd: this.pwd, cnfrmPwd: this.cnfrmpwd, fpEmail: this.fpEmail })
+      this.$router.push({ name: 'amplifyc-my-account-login' })
     } catch (error) {
-      //
+      console.error(error)
     }
   }
 }

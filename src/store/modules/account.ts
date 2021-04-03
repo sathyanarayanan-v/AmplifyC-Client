@@ -8,6 +8,9 @@ import { IUser } from '@/interfaces/store/user'
 const mutations = {
   setCurrentUser(state: IAuthState, currentUser: IUser) {
     state.currentUser = currentUser
+  },
+  setFpEmail(state: IAuthState, email: string) {
+    state.fpEmail = email
   }
 }
 const actions = {
@@ -24,17 +27,25 @@ const actions = {
   async sendForgotPasswordCode({ commit }: ICommit, email: string) {
     try {
       await axiosInstance.post(myAccountAPI.fpCodeGen(email))
-      localStorage.setItem('fpEmail', email)
+      commit('setFpEmail', email)
     } catch (error) {
       //
     }
   },
-  async validateFpCode({ commit }: ICommit, data: { email: string; code: string }) {
-    await axiosInstance.post(myAccountAPI.validateFpCode(), data)
+  validateFpCode({ commit }: ICommit, data: { email: string; code: string }) {
+    return axiosInstance.post(myAccountAPI.validateFpCode(), data)
+  },
+  resetPassword({ commit }: ICommit, data: { pwd: string; cnfrmPwd: string; fpEmail: string }) {
+    return axiosInstance.post(myAccountAPI.resetPassword, data, {
+      headers: {
+        'Auth-Mail': data.fpEmail
+      }
+    })
   }
 }
 const state: IAuthState = {
-  currentUser: null
+  currentUser: null,
+  fpEmail: ''
 }
 export default {
   actions,

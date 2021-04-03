@@ -26,7 +26,8 @@ export default class TheToolBar extends VueStrong {
     'amplifyc-my-account-login',
     'amplifyc-my-account-forgot-password-code-gen',
     'amplifyc-my-account-forgot-password-validate-code',
-    'amplifyc-my-account-new'
+    'amplifyc-my-account-new',
+    'amplifyc-my-account-forgot-password-reset-password'
   ]
 }
 </script>

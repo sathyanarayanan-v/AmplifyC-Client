@@ -4,6 +4,7 @@ import AmplifyCLogin from '../components/Login.vue'
 import AmplifyCMyAccount from '../views/MyAccount.vue'
 import AmplifyCForgotPasswordCodeGen from '../components/ForgotPasswordCodeGen.vue'
 import AmplifyCValidateForgotPasswordCode from '../components/ValidateForgotPasswordCode.vue'
+import AmplifyCResetPassword from '../components/ResetPassword.vue'
 import AmplifyCCreateAccount from '../components/CreateAccount.vue'
 import AmplifyCMainLayout from '@/layout/TheMainLayout.vue'
 import { AuthGuard } from './authGuard'
@@ -34,6 +35,11 @@ const routes: Array<RouteConfig> = [
             path: 'forgot-password/verify-code',
             component: AmplifyCValidateForgotPasswordCode,
             name: 'amplifyc-my-account-forgot-password-validate-code'
+          },
+          {
+            path: 'forgot-password/reset-password',
+            component: AmplifyCResetPassword,
+            name: 'amplifyc-my-account-forgot-password-reset-password'
           },
           {
             path: 'new',
