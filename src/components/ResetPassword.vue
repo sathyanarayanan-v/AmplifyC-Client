@@ -103,6 +103,16 @@ export default class ResetPassword extends VueStrong {
   async resetPassword() {
     try {
       await this.$store.dispatch('resetPassword', { pwd: this.pwd, cnfrmPwd: this.cnfrmpwd, fpEmail: this.fpEmail })
+      this.$store.dispatch('createNotification', {
+        group: 'notification',
+        title: 'Reset password success. Please login to continue.',
+        text: '',
+        time: Date.now().toString(),
+        data: {
+          color: 'success',
+          icon: 'mdi-check-decagram'
+        }
+      })
       this.$router.push({ name: 'amplifyc-my-account-login' })
     } catch (error) {
       console.error(error)

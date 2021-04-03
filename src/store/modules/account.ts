@@ -38,7 +38,7 @@ const actions = {
   resetPassword({ commit }: ICommit, data: { pwd: string; cnfrmPwd: string; fpEmail: string }) {
     return axiosInstance.post(myAccountAPI.resetPassword, data, {
       headers: {
-        'Auth-Mail': data.fpEmail
+        AuthMail: data.fpEmail
       }
     })
   }
