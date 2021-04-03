@@ -2,5 +2,7 @@ const ACCOUNT_ROOT = 'account'
 
 export const myAccountAPI = {
   login: () => `${ACCOUNT_ROOT}/login`,
-  getCurrentUser: () => `${ACCOUNT_ROOT}`
+  getCurrentUser: () => `${ACCOUNT_ROOT}`,
+  fpCodeGen: (email: string) => `${ACCOUNT_ROOT}/forgot-password/send-mail?email=${email}`,
+  validateFpCode: () => `${ACCOUNT_ROOT}/forgot-password/verify-email`
 }

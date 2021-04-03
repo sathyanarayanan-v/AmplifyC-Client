@@ -9,4 +9,7 @@ export interface INotification {
   title: string
   text: string
   time?: string
+  data: {
+    color: string
+  }
 }

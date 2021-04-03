@@ -30,6 +30,7 @@
                   type="submit"
                   color="success"
                   class="text-capitalize mr-3"
+                  :loading="loading"
                 >
                   <h4>Send Code</h4>
                   <v-icon class="ml-2">mdi-send</v-icon>
@@ -51,14 +52,32 @@ import { VueStrong } from '../typedVue'
 export default class ForgotPasswordCodeGen extends VueStrong {
   email = ''
   valid = false
+  loading = false
+
   userEmailRules = [
     (value: string) => !!value || 'E-mail is required',
     (value: string) => /.+@.+\..+/.test(value) || 'E-mail must be valid'
   ]
 
-  public sendVerificationCode() {
-    console.log('checking code')
-    this.$router.push({ name: 'amplifyc-my-account-forgot-password-validate-code' })
+  public async sendVerificationCode() {
+    try {
+      this.loading = true
+      await this.$store.dispatch('sendForgotPasswordCode', this.email)
+      this.$store.dispatch('createNotification', {
+        group: 'notification',
+        title: 'Email sent to ' + this.email + '. Kindly check your inbox.',
+        text: '',
+        time: Date.now().toString(),
+        data: {
+          color: 'success',
+          icon: 'mdi-check-decagram'
+        }
+      })
+      this.$router.push({ name: 'amplifyc-my-account-forgot-password-validate-code' })
+      this.loading = false
+    } catch (error) {
+      this.loading = false
+    }
   }
 }
 </script>

@@ -20,6 +20,17 @@ const actions = {
   async getCurrentUser({ commit }: ICommit) {
     const currentUser: Partial<IUser> = await axiosInstance.get(myAccountAPI.getCurrentUser())
     commit('setCurrentUser', currentUser)
+  },
+  async sendForgotPasswordCode({ commit }: ICommit, email: string) {
+    try {
+      await axiosInstance.post(myAccountAPI.fpCodeGen(email))
+      localStorage.setItem('fpEmail', email)
+    } catch (error) {
+      //
+    }
+  },
+  async validateFpCode({ commit }: ICommit, data: { email: string; code: string }) {
+    await axiosInstance.post(myAccountAPI.validateFpCode(), data)
   }
 }
 const state: IAuthState = {

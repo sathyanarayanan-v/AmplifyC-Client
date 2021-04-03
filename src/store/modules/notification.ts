@@ -2,34 +2,27 @@ import { ICommit, INotification } from '@/interfaces/common.interface'
 import { INotificationState } from '@/interfaces/store/notification'
 const mutations = {
   setNewNotification(state: INotificationState, notification: INotification) {
-    state.newNotification.push(notification)
+    state.notifications.unshift(notification)
   },
-  clearNewNotification(state: INotificationState, notification: INotification) {
-    const newNotification = state.newNotification.filter(
+  readNotification(state: INotificationState, notification: INotification) {
+    const oldNotifications = state.notifications.filter(
       existingNotification => existingNotification.time !== notification.time
     )
-    state.newNotification = newNotification
+    state.notifications = oldNotifications
   },
-  createNotification(state: INotificationState, notification: INotification) {
-    state.notifications.push(notification)
-  },
-  readNotification(state: INotificationState, time: string) {
-    const unreadNotifications = state.notifications.filter(notification => notification.time !== time)
-    state.notifications = unreadNotifications
+  createNotification(state: INotificationState) {
+    state.notifications = []
   }
 }
 const actions = {
   createNotification({ commit }: ICommit, notification: INotification) {
     commit('setNewNotification', notification)
-    setTimeout(() => commit('clearNewNotification', notification), 5000)
-    commit('createNotification', notification)
   },
   readNotification({ commit }: ICommit, time: string) {
     commit('readNotification', time)
   }
 }
 const state: INotificationState = {
-  newNotification: [],
   notifications: []
 }
 

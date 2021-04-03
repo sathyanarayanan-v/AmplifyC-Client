@@ -38,6 +38,7 @@ const routes: Array<RouteConfig> = [
           {
             path: 'new',
             component: AmplifyCCreateAccount,
+            beforeEnter: AuthGuard,
             name: 'amplifyc-my-account-new'
           }
         ]

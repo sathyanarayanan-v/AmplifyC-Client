@@ -47,14 +47,21 @@
 import Component from 'vue-class-component'
 import { VueStrong } from '../typedVue'
 
-@Component
+@Component<ValidateForgotPasswordCode>({
+  created() {
+    if (!this.fpEmail) {
+      this.$router.push({ name: 'amplifyc-my-account-forgot-password-code-gen' })
+    }
+  }
+})
 export default class ValidateForgotPasswordCode extends VueStrong {
   valid = false
   code = ''
+  fpEmail = localStorage.getItem('fpEmail') || ''
   sixDigitCodeRules = [(value: string) => (!!value && value.length === 6 && !isNaN(+value)) || 'Enter valid code']
 
-  public checkVerificationCode() {
-    console.log('checking code')
+  public async checkVerificationCode() {
+    await this.$store.dispatch('validateFpCode', { email: this.fpEmail, code: this.code })
   }
 }
 </script>

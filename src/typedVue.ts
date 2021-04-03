@@ -4,7 +4,7 @@ import { IRootState } from '@/interfaces/store/root'
 import { NotificationOptions } from 'vue-notification'
 import { VueRouter } from 'vue-router/types/router'
 
-abstract class VueStrongClass extends Vue {
+export abstract class VueStrongClass extends Vue {
   public $store!: Store<IRootState>
   public $notify!: (options: NotificationOptions | string) => void
   $router: VueRouter
