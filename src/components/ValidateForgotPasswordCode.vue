@@ -22,6 +22,7 @@
                   label="Code"
                   :rules="sixDigitCodeRules"
                   v-model="code"
+                  autocomplete="off"
                   class="mb-4"
                 ></v-text-field>
                 <v-btn

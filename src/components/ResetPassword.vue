@@ -19,6 +19,7 @@
               <v-form v-model="valid">
                 <v-text-field
                   outlined
+                  autocomplete="off"
                   :rules="pwdRules"
                   label="Password"
                   v-model="pwd"
@@ -29,6 +30,7 @@
                 ></v-text-field>
                 <v-text-field
                   outlined
+                  autocomplete="off"
                   label="Confirm password"
                   :type="showPassword ? 'text' : 'password'"
                   :rules="[

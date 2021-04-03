@@ -5,11 +5,19 @@
       <div class="text-fields">
         <v-form v-model="valid">
           <p class="font-weight-bold text-center" color="#000">Please login with your credentials to continue</p>
-          <v-text-field outlined label="Username" :rules="usernameRules" v-model="username" class="mb-2"></v-text-field>
+          <v-text-field
+            autocomplete="off"
+            outlined
+            label="Username"
+            :rules="usernameRules"
+            v-model="username"
+            class="mb-2"
+          ></v-text-field>
           <v-text-field
             outlined
             label="Password"
             :rules="passwordRules"
+            autocomplete="off"
             v-model="password"
             class="mb-2"
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
