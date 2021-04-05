@@ -72,6 +72,7 @@ export default class ValidateForgotPasswordCode extends VueStrong {
   public async checkVerificationCode() {
     try {
       await this.$store.dispatch('validateFpCode', { email: this.fpEmail, code: this.code })
+      this.$store.dispatch('setFpCode', this.code)
       this.$router.push({ name: 'amplifyc-my-account-forgot-password-reset-password' })
     } catch (error) {
       //

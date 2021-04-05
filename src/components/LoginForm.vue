@@ -57,8 +57,8 @@ export default class LoginForm extends VueStrong {
   valid = false
   showPassword = false
 
-  passwordRules = [(value: string) => (value ? true : 'Username is required')]
-  usernameRules = [(value: string) => (value ? true : 'Password is required')]
+  usernameRules = [(value: string) => (value ? true : 'Username is required')]
+  passwordRules = [(value: string) => (value ? true : 'Password is required')]
 
   @Prop({ type: Boolean, required: true, default: false })
   loading: boolean

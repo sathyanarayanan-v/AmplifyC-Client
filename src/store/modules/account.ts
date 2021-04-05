@@ -4,21 +4,29 @@ import { IAuthState } from '@/interfaces/store/account'
 import { myAccountAPI } from '@/api'
 import axiosInstance from '@/api/axios'
 import { IUser } from '@/interfaces/store/user'
-
+import router from '@/router'
+import store from '@/store'
 const mutations = {
   setCurrentUser(state: IAuthState, currentUser: IUser) {
     state.currentUser = currentUser
   },
   setFpEmail(state: IAuthState, email: string) {
     state.fpEmail = email
+  },
+  setFpCode(state: IAuthState, code: string) {
+    state.fpCode = code
   }
 }
 const actions = {
   async login({ commit }: ICommit, loginDto: ILoginRequestDto) {
-    const loginResponse: ILoginResponseDto = await axiosInstance.post(myAccountAPI.login(), loginDto)
-    const { username } = loginResponse
-    localStorage.setItem('token', loginResponse.token)
-    commit('setCurrentUser', { username })
+    try {
+      const loginResponse: ILoginResponseDto = await axiosInstance.post(myAccountAPI.login(), loginDto)
+      const { username } = loginResponse
+      localStorage.setItem('token', loginResponse.token)
+      commit('setCurrentUser', { username })
+    } catch (error) {
+      return error
+    }
   },
   async getCurrentUser({ commit }: ICommit) {
     const currentUser: Partial<IUser> = await axiosInstance.get(myAccountAPI.getCurrentUser())
@@ -26,26 +34,45 @@ const actions = {
   },
   async sendForgotPasswordCode({ commit }: ICommit, email: string) {
     try {
-      await axiosInstance.post(myAccountAPI.fpCodeGen(email))
+      const res = await axiosInstance.post(myAccountAPI.fpCodeGen(email))
       commit('setFpEmail', email)
-    } catch (error) {
-      //
+      router.push({ name: 'amplifyc-my-account-forgot-password-validate-code' })
+      store.dispatch('createNotification', {
+        group: 'notification',
+        title: 'Email sent to ' + email + '. Kindly check your inbox.',
+        text: '',
+        time: Date.now().toString(),
+        data: {
+          color: 'success',
+          icon: 'mdi-check-decagram'
+        }
+      })
+    } catch (err) {
+      return err
     }
   },
   validateFpCode({ commit }: ICommit, data: { email: string; code: string }) {
     return axiosInstance.post(myAccountAPI.validateFpCode(), data)
   },
-  resetPassword({ commit }: ICommit, data: { pwd: string; cnfrmPwd: string; fpEmail: string }) {
-    return axiosInstance.post(myAccountAPI.resetPassword, data, {
-      headers: {
-        AuthMail: data.fpEmail
-      }
-    })
+  resetPassword(
+    { commit }: ICommit,
+    data: {
+      password: string
+      confirmPassword: string
+      email: string
+      code: string
+    }
+  ) {
+    return axiosInstance.post(myAccountAPI.resetPassword, data)
+  },
+  setFpCode({ commit }: ICommit, code: string) {
+    commit('setFpCode', code)
   }
 }
 const state: IAuthState = {
   currentUser: null,
-  fpEmail: ''
+  fpEmail: '',
+  fpCode: ''
 }
 export default {
   actions,

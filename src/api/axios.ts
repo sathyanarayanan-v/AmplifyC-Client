@@ -23,7 +23,16 @@ const errorHandler = (err: any) => {
     })
     return Promise.reject(err.response.data)
   }
-  return Promise.reject({ ...err.response.data })
+  store.dispatch('createNotification', {
+    group: 'notification',
+    title: err.response.data.payload || 'Please try again later',
+    time: Date.now().toString(),
+    data: {
+      color: 'error',
+      icon: 'mdi-alert-decagram'
+    }
+  })
+  return Promise.reject(err.response.data)
 }
 axiosInstance.interceptors.request.use(config => {
   const token = localStorage.getItem('token')

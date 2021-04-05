@@ -16,7 +16,7 @@
               Verification code will be sent to registered email address
             </p>
             <div class="text-fields my-auto">
-              <v-form v-model="valid">
+              <v-form ref="forgotPasswordForm" v-model="valid">
                 <v-text-field
                   outlined
                   label="E-mail"
@@ -64,17 +64,7 @@ export default class ForgotPasswordCodeGen extends VueStrong {
     try {
       this.loading = true
       await this.$store.dispatch('sendForgotPasswordCode', this.email)
-      this.$store.dispatch('createNotification', {
-        group: 'notification',
-        title: 'Email sent to ' + this.email + '. Kindly check your inbox.',
-        text: '',
-        time: Date.now().toString(),
-        data: {
-          color: 'success',
-          icon: 'mdi-check-decagram'
-        }
-      })
-      this.$router.push({ name: 'amplifyc-my-account-forgot-password-validate-code' })
+      ;(this.$refs.forgotPasswordForm as HTMLFormElement).reset()
       this.loading = false
     } catch (error) {
       this.loading = false

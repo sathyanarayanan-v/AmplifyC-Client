@@ -73,7 +73,7 @@ import { mapState } from 'vuex'
 import { IRootState } from '../interfaces/store/root'
 import { VueStrong } from '../typedVue'
 
-@Component({
+@Component<ResetPassword>({
   created() {
     if (!this.fpEmail) {
       this.$router.push({ name: 'amplifyc-my-account-forgot-password-code-gen' })
@@ -81,7 +81,8 @@ import { VueStrong } from '../typedVue'
   },
   computed: {
     ...mapState({
-      fpEmail: state => (state as IRootState).auth.fpEmail
+      fpEmail: state => (state as IRootState).auth.fpEmail,
+      fpCode: state => (state as IRootState).auth.fpCode
     })
   }
 })
@@ -90,6 +91,7 @@ export default class ResetPassword extends VueStrong {
   pwd = ''
   cnfrmpwd = ''
   fpEmail!: string
+  fpCode!: string
   showPassword = false
   pwdRules = [
     (value: string) => {
@@ -102,7 +104,12 @@ export default class ResetPassword extends VueStrong {
 
   async resetPassword() {
     try {
-      await this.$store.dispatch('resetPassword', { pwd: this.pwd, cnfrmPwd: this.cnfrmpwd, fpEmail: this.fpEmail })
+      await this.$store.dispatch('resetPassword', {
+        password: this.pwd,
+        confirmPassword: this.cnfrmpwd,
+        email: this.fpEmail,
+        code: this.fpCode
+      })
       this.$store.dispatch('createNotification', {
         group: 'notification',
         title: 'Reset password success. Please login to continue.',

@@ -48,7 +48,6 @@ export default class AmplifyCLogin extends VueStrong {
       })
       this.loading = false
     } catch (error) {
-      error
       this.loading = false
     }
   }
