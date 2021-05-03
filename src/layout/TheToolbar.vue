@@ -9,7 +9,7 @@
         transition="scale-transition"
         width="120"
       />
-      <v-btn :to="{ name: 'amplifyc-login' }" text class="text-capitalize edge-7" active-class="route-active"
+      <v-btn :to="{ name: 'amplifyc-my-company' }" text class="text-capitalize edge-7" active-class="route-active"
         ><h4>My Companies</h4></v-btn
       >
     </div>

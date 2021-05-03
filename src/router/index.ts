@@ -7,6 +7,7 @@ import AmplifyCValidateForgotPasswordCode from '../components/ValidateForgotPass
 import AmplifyCResetPassword from '../components/ResetPassword.vue'
 import AmplifyCCreateAccount from '../components/CreateAccount.vue'
 import AmplifyCMainLayout from '@/layout/TheMainLayout.vue'
+import AmplifyCMyCompany from '@/views/MyCompany.vue'
 import { AuthGuard } from './authGuard'
 
 Vue.use(VueRouter)
@@ -48,6 +49,11 @@ const routes: Array<RouteConfig> = [
             name: 'amplifyc-my-account-new'
           }
         ]
+      },
+      {
+        path: 'my-company',
+        component: AmplifyCMyCompany,
+        name: 'amplifyc-my-company'
       }
     ]
   }
