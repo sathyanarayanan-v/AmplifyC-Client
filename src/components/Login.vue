@@ -36,16 +36,7 @@ export default class AmplifyCLogin extends VueStrong {
     try {
       this.loading = true
       await this.$store.dispatch('login', userCreds)
-      this.$store.dispatch('createNotification', {
-        group: 'notification',
-        title: 'You have successfully logged in',
-        text: '',
-        time: Date.now().toString(),
-        data: {
-          color: 'success',
-          icon: 'mdi-check-decagram'
-        }
-      })
+
       this.loading = false
     } catch (error) {
       this.loading = false

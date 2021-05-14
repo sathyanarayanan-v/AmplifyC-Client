@@ -6,6 +6,19 @@ import axiosInstance from '@/api/axios'
 import { IUser } from '@/interfaces/store/user'
 import router from '@/router'
 import store from '@/store'
+function loginSuccess() {
+  router.push({ name: 'amplifyc-my-company' })
+  store.dispatch('createNotification', {
+    group: 'notification',
+    title: 'You have successfully logged in',
+    text: '',
+    time: Date.now().toString(),
+    data: {
+      color: 'success',
+      icon: 'mdi-check-decagram'
+    }
+  })
+}
 const mutations = {
   setCurrentUser(state: IAuthState, currentUser: IUser) {
     state.currentUser = currentUser
@@ -24,6 +37,7 @@ const actions = {
       const { username } = loginResponse
       localStorage.setItem('token', loginResponse.token)
       commit('setCurrentUser', { username })
+      loginSuccess()
     } catch (error) {
       return error
     }

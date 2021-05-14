@@ -16,6 +16,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     component: AmplifyCMainLayout,
+    redirect: { name: 'amplifyc-my-company' },
     children: [
       {
         path: 'my-account',
@@ -53,7 +54,8 @@ const routes: Array<RouteConfig> = [
       {
         path: 'my-company',
         component: AmplifyCMyCompany,
-        name: 'amplifyc-my-company'
+        name: 'amplifyc-my-company',
+        beforeEnter: AuthGuard
       }
     ]
   }

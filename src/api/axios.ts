@@ -8,8 +8,10 @@ const responseHandler = (res: AxiosResponse): Promise<any> => {
   return res.data
 }
 const errorHandler = (err: any) => {
-  if (err.status === UNAUTHORIZED) {
-    router.push({ name: 'amplifyc-my-account-login' })
+  if (err.message) {
+    if (err.status === UNAUTHORIZED || err.message.includes('401')) {
+      router.push({ name: 'amplifyc-my-account-login' })
+    }
   }
   if (typeof err.response.data === 'string') {
     store.dispatch('createNotification', {
