@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar v-if="!nonAppBarRoutes.includes($route.name)" app height="80" color="#f4f7f8" elevation="0">
+  <v-app-bar v-if="!nonAppBarRoutes.includes($route.name)" app height="80" color="#fff" elevation="0">
     <div class="d-flex align-center">
       <v-img
         alt="Vuetify Logo"

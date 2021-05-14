@@ -5,6 +5,17 @@
         <v-toolbar-title class="font-weight-black">List of Companies</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
+        <v-dialog v-model="dialog" max-width="500px">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn color="primary" class="mb-2 text-capitalize" v-bind="attrs" v-on="on">
+              <v-icon class="mr-2">mdi-plus</v-icon>
+              <h4>Add Company</h4>
+            </v-btn>
+          </template>
+          <v-card>
+            jsjsj
+          </v-card>
+        </v-dialog>
       </v-toolbar>
     </template>
     <template v-slot:[`item.actions`]="{}">
@@ -39,7 +50,8 @@ import { VueStrong } from '../typedVue'
       { text: 'Incorporation Date', value: 'incorporation_date' },
       { text: 'State', value: 'state' },
       { text: 'Actions', value: 'actions', sortable: false }
-    ]
+    ],
+    dialog: false
   })
 })
 export default class MyCompany extends VueStrong {}

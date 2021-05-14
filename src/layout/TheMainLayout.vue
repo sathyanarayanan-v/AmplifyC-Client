@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <amplifyc-toolbar />
-    <v-main style="background-color:#f4f7f8">
+    <v-main class="mt-4" style="background-color:#fff">
       <v-row class="mx-13 my-2" no-gutters>
         <v-col>
           <v-row align="start" justify="start">
