@@ -1,23 +1,17 @@
 * {
   font-family: 'Montserrat', sans-serif;
-  // font-size: 17px;
 }
 .centered {
   position: fixed;
   top: 50%;
   left: 50%;
-  /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
-// h2 {
-//   font-size: 24px;
-// }
+
 .edge-12 {
   border-radius: 12px !important;
 }
-// h3 {
-//   font-size: 20px;
-// }
+
 .route-active {
   font-weight: 900;
   font-size: 16px;
@@ -38,4 +32,94 @@
   .alert-text {
     font-weight: 500;
   }
+}
+
+.white-bg {
+  background-color: #fff !important;
+}
+.pull-up {
+  -webkit-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  box-shadow: none;
+  &:hover {
+    -webkit-transform: translateY(-4px) scale(1.02);
+    -moz-transform: translateY(-4px) scale(1.02);
+    -ms-transform: translateY(-4px) scale(1.02);
+    -o-transform: translateY(-4px) scale(1.02);
+    transform: translateY(-4px) scale(1.02);
+    -webkit-box-shadow: 0 14px 24px rgb(0 0 0 / 20%);
+    box-shadow: 0 14px 24px rgb(0 0 0 / 20%);
+    z-index: 999;
+  }
+}
+.app-primary-nav-items {
+  display: flex;
+  width: 15% !important;
+}
+.app-secondary-nav-items {
+  display: flex;
+  width: 45% !important;
+}
+.nav-item {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 100%;
+  > button {
+    background-color: #fff !important;
+    min-width: 45px !important;
+    width: 52px !important;
+    border-radius: 52px !important;
+    height: 45px !important;
+    box-shadow: none;
+    padding: 0 12px !important;
+    span > i {
+      font-size: 28px !important;
+      &:hover {
+        color: #0252cc !important;
+      }
+    }
+    &:hover {
+      span > i {
+        color: #0252cc !important;
+      }
+      box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    }
+    &::before {
+      opacity: 0 !important;
+    }
+  }
+}
+.nav-search {
+  max-width: 50% !important;
+  height: 50px !important;
+  .v-input__slot {
+    box-shadow: none !important;
+  }
+}
+.menuable__content__active {
+  top: 70px !important;
+}
+.w-100 {
+  width: 100% !important;
+}
+.nav-bar-items {
+  display: flex;
+}
+.bg-lightBlue {
+  background-color: #e1eaf9 !important;
+}
+.primary-text {
+  color: #0252cc;
+}
+.bg-white {
+  background-color: #fff !important;
+}
+.bg-website {
+  background-color: #f8f9fb !important;
+}
+.bg-primary {
+  background-color: #0252cc !important;
 }

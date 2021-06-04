@@ -1,8 +1,9 @@
 <template>
   <v-app>
     <amplifyc-toolbar />
-    <v-main class="mt-4" style="background-color:#fff">
-      <v-row class="mx-13 my-2" no-gutters>
+    <amplifyc-sidebar />
+    <v-main class="mt-4" style="background-color:#F8F9FB">
+      <v-row class="my-2" no-gutters>
         <v-col>
           <v-row align="start" justify="start">
             <v-col cols="12" sm="12" md="12">
@@ -23,10 +24,12 @@ import { VueStrong } from '../typedVue'
 import Component from 'vue-class-component'
 import TheToolbar from './TheToolbar.vue'
 import TheNotification from '../components/Notifications.vue'
+import TheSidebar from './TheSidebar.vue'
 @Component({
   components: {
     'amplifyc-toolbar': TheToolbar,
-    'amplifyc-notification': TheNotification
+    'amplifyc-notification': TheNotification,
+    'amplifyc-sidebar': TheSidebar
   }
 })
 export default class TheMainLayout extends VueStrong {}
