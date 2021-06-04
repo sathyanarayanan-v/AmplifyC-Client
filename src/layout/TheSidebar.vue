@@ -58,7 +58,7 @@ export default {
           target: { name: 'my-company' }
         }
       ],
-      drawer: true,
+      drawer: false,
       mini: true
     }
   }

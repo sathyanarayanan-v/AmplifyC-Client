@@ -35,7 +35,7 @@
           <v-btn>
             <v-icon>mdi-bell</v-icon>
           </v-btn>
-          <v-menu bottom transition="scale-transition" class="nav-menu">
+          <v-menu bottom transition="scale-transition" class="nav-menu" content-class="custom-menu__content">
             <template v-slot:activator="{ on, attrs }">
               <v-btn icon v-bind="attrs" v-on="on">
                 <v-icon color="black">mdi-account</v-icon>
@@ -80,7 +80,7 @@
           <v-btn>
             <v-icon>mdi-bell</v-icon>
           </v-btn>
-          <v-menu bottom transition="scale-transition" class="nav-menu">
+          <v-menu bottom transition="scale-transition" class="nav-menu" content-class="custom-menu__content">
             <template v-slot:activator="{ on, attrs }">
               <v-btn icon v-bind="attrs" v-on="on">
                 <v-icon color="black">mdi-account</v-icon>
