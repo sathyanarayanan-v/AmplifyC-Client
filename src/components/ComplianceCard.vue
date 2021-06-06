@@ -18,7 +18,7 @@
         </v-col>
         <v-col cols="12" sm="12" md="6" lg="6" xl="6" class="d-flex justify-center">
           <v-progress-circular :rotate="270" :size="100" :width="15" :value="'10'" color="success" class="mt-4">
-            <h3 class="dark-text mb-0">{{ '90%' }}</h3>
+            <h2 class="primary-text mb-0">{{ '90%' }}</h2>
           </v-progress-circular>
         </v-col>
       </v-row>

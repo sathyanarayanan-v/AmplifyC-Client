@@ -13,7 +13,7 @@
         </v-btn>
       </v-col>
       <v-col cols="12" sm="8" md="6" lg="5" xl="5">
-        <h3 class="text-center my-auto">Beez Innovation Labs Private Limited</h3>
+        <h2 class="text-center my-auto ">Beez Innovation Labs Private Limited</h2>
       </v-col>
       <v-col cols="12" sm="12" md="12" lg="4" xl="4" class="justify-end d-flex">
         <v-btn
