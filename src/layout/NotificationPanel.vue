@@ -1,46 +1,44 @@
 <template>
   <v-navigation-drawer
-    :value="drawer"
-    @input="setDrawer"
+    :value="notificationPanel"
+    @input="setNotificationPanel"
     class="color"
     :width="300"
     elevation="2"
+    right
     app
-    :permanent="permanent[$vuetify.breakpoint.name]"
-    :mini-variant.sync="mini"
-    mini-variant-width="75"
+    temporary
+    height="100%"
   >
     <v-list-item class="py-3">
-      <v-list-item-avatar>
-        <v-icon>mdi-account-circle</v-icon>
-      </v-list-item-avatar>
-
-      <v-list-item-content>
-        <v-tooltip bottom content-class="sidebarTooltip">
+      <v-list-item-title class="d-flex">
+        <h4 class="my-auto">Notifications</h4>
+        <v-spacer></v-spacer>
+        <v-tooltip bottom content-class="sidebarLogoutTooltip">
           <template v-slot:activator="{ on, attrs }">
-            <span v-bind="attrs" v-on="on"
-              ><v-list-item-title>{{ currentUser.email }}</v-list-item-title></span
-            >
+            <v-btn v-bind="attrs" v-on="on" icon>
+              <v-icon>mdi-bell-check-outline</v-icon>
+            </v-btn>
           </template>
-          <span>{{ currentUser.email }}</span>
+          <span>Mark all as read</span>
         </v-tooltip>
-      </v-list-item-content>
+      </v-list-item-title>
 
       <v-list-item-action>
         <v-tooltip bottom content-class="sidebarLogoutTooltip">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" v-on="on" icon @click="$router.push({ name: 'amplifyc-my-account-login' })">
-              <v-icon>mdi-power</v-icon>
+            <v-btn @click="setNotificationPanel(false)" icon color="error" v-bind="attrs" v-on="on">
+              <v-icon>mdi-close-circle-outline</v-icon>
             </v-btn>
           </template>
-          <span>Logout</span>
+          <span>Close</span>
         </v-tooltip>
       </v-list-item-action>
     </v-list-item>
 
     <v-divider color="#fff"></v-divider>
 
-    <v-list nav>
+    <!-- <v-list nav>
       <v-list-item
         v-for="item in items"
         :key="item.title"
@@ -63,54 +61,38 @@
     </v-list>
     <template v-slot:append>
       <div class="pa-2" v-if="!mini" style="bottom:0px">
-        <v-btn text @click="mini = !mini">
+        <v-btn text>
           <v-icon>mdi-menu-open</v-icon>
         </v-btn>
       </div>
-      <div class="pa-2" v-if="mini" style="bottom:0px">
-        <v-btn text @click="mini = !mini">
+      <div class="pa-2" style="bottom:0px">
+        <v-btn text>
           <v-icon>mdi-menu</v-icon>
         </v-btn>
       </div>
-    </template>
+    </template> -->
   </v-navigation-drawer>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 export default {
-  name: 'TheSidebar',
+  name: 'NotificationPanel',
   data() {
-    return {
-      items: [
-        {
-          title: 'Dashboard',
-          icon: 'mdi-home',
-          target: { name: 'amplifyc-companies' }
-        },
-        {
-          title: 'Tools',
-          icon: 'mdi-tools',
-          target: { name: 'amplifyc-my-account' }
-        }
-      ],
-
-      mini: false,
-      permanent: { xs: false, sm: false, md: true, lg: true, xl: true }
-    }
+    return {}
   },
   computed: {
     ...mapState({
-      drawer: state => state.ui.drawer,
-      currentUser: state => {
-        return state.auth.currentUser
-      }
+      notificationPanel: state => state.ui.notificationPanel
     })
   },
   methods: {
-    setDrawer(e) {
-      this.$store.dispatch('toggleDrawer', e)
+    setNotificationPanel(e) {
+      this.$store.dispatch('toggleNotificationPanel', e)
     }
+  },
+  created() {
+    console.log(this.notificationPanel)
   }
 }
 </script>

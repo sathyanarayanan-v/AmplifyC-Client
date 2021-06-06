@@ -3,22 +3,24 @@
     <v-col lg="9" cols="12">
       <v-card class="pull-up bg-lightBlue" width="100%">
         <v-row>
-          <v-col lg="3" cols="12" class="py-2 my-auto">
+          <v-col lg="3" md="3" sm="3" xl="3" cols="12" class="py-2 my-auto">
             <v-img src="../assets/welcome_image.svg" height="100" width="100%" contain> </v-img>
           </v-col>
-          <v-col lg="9" cols="12" class="pb-0 ma-auto">
+          <v-col lg="9" md="9" sm="9" xl="9" cols="12" class="pb-0 ma-auto">
             <h2 class="font-weight-black primary-text pa-2">Hello Sathya, Welcome back!</h2>
             <p class="mt-2 ml-1 pa-2" v-html="quotes[randomNumber]"></p>
           </v-col>
         </v-row>
       </v-card>
     </v-col>
-    <v-col lg="3" cols="12">
+    <v-col lg="3" cols="12" class="my-auto">
       <v-card width="100%" class="bg-website" elevation="0">
         <v-row>
-          <v-col lg="9" cols="12" class="pb-0 ma-auto">
+          <v-col lg="12" md="6" sm="6" xl="12" cols="12" class="pb-0 ma-auto">
             <h3 class="font-weight-black primary-text mb-4 text-center">You have new Clients? Add them!</h3>
-            <v-btn class="mb-4 text-capitalize bg-primary white--text" block>
+          </v-col>
+          <v-col lg="12" md="6" sm="6" xl="12" cols="12" class="pb-0">
+            <v-btn class="mb-0 text-capitalize bg-primary white--text" block>
               <v-icon class="mr-2">mdi-plus-circle-outline</v-icon>
               <h4>Add Company</h4>
             </v-btn>

@@ -1,24 +1,18 @@
 <template>
   <v-app-bar app height="80" color="#F8F9FB" elevation="0">
-    <div class=" nav-bar-items w-100">
-      <v-spacer v-if="!permanent[$vuetify.breakpoint.name]"></v-spacer>
-      <div class="app-primary-nav-items">
-        <div class="nav-item">
-          <v-icon v-if="permanent[$vuetify.breakpoint.name]" class="mr-1">mdi-menu</v-icon>
-          <v-img
-            alt="Vuetify Logo"
-            max-height="63"
-            max-width="120"
-            src="../assets/logo.png"
-            transition="scale-transition"
-            class="mx-auto"
-          />
-        </div>
-      </div>
-      <v-spacer></v-spacer>
+    <div class=" nav-bar-items w-100 justify-space-between">
+      <v-icon v-if="permanent[$vuetify.breakpoint.name]" @click="toggleDrawer">mdi-menu</v-icon>
+      <v-img
+        alt="Vuetify Logo"
+        max-height="63"
+        max-width="120"
+        src="../assets/logo.png"
+        transition="scale-transition"
+        class="mx-auto"
+      />
       <div class="app-secondary-nav-items">
         <div class="nav-item">
-          <v-btn>
+          <v-btn @click="toggleNotificationPanel">
             <v-icon>mdi-bell</v-icon>
           </v-btn>
           <v-menu bottom transition="scale-transition" class="nav-menu" content-class="custom-menu__content">
@@ -48,6 +42,12 @@ import { VueStrong } from '../typedVue'
 export default class TheToolBar extends VueStrong {
   items = [{ title: 'hello' }, { title: 'hello' }, { title: 'hello' }, { title: 'hello' }]
   permanent = { xs: true, sm: true, md: false, lg: false, xl: false }
+  toggleDrawer() {
+    this.$store.dispatch('toggleDrawer', true)
+  }
+  toggleNotificationPanel() {
+    this.$store.dispatch('toggleNotificationPanel', true)
+  }
 }
 </script>
 

@@ -8,7 +8,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-header {
+.v-app-bar > header {
   z-index: 10 !important;
 }
 .edge-12 {
@@ -166,6 +166,8 @@ header {
 }
 .company-search {
   height: 30px !important;
+  max-width: 15%;
+  min-width: 12rem;
   > .v-input__control {
     min-height: 30px !important;
   }
@@ -193,13 +195,13 @@ header {
   overflow-y: scroll !important;
 }
 .sidebarTooltip {
-  left: 2px !important;
+  left: 25px !important;
   z-index: 10 !important;
 }
 .sidebarLogoutTooltip {
   z-index: 10 !important;
 }
-.v-app-bar.v-app-bar--is-scrolled {
-  padding: 20px 20px 0px 20px !important;
-  height: 100px !important;
-}
+// .v-app-bar.v-app-bar--is-scrolled {
+//   padding: 20px 20px 0px 0px !important;
+//   height: 100px !important;
+// }

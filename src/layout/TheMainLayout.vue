@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="background-color:#F8F9FB">
     <v-main class="mt-4" style="background-color:#F8F9FB">
       <v-row class="my-2" no-gutters>
         <v-col>
