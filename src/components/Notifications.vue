@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import Component from 'vue-class-component'
+import { Component } from 'vue-property-decorator'
 import { VueStrong } from '../typedVue'
 import { INotification } from '../interfaces/common.interface'
 import { IRootState } from '../interfaces/store/root'

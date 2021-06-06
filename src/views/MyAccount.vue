@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Component from 'vue-class-component'
+import { Component } from 'vue-property-decorator'
 import { VueStrong } from '../typedVue'
 
 @Component

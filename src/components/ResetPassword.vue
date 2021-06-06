@@ -68,7 +68,7 @@
 </template>
 
 <script lang="ts">
-import Component from 'vue-class-component'
+import { Component } from 'vue-property-decorator'
 import { mapState } from 'vuex'
 import { IRootState } from '../interfaces/store/root'
 import { VueStrong } from '../typedVue'

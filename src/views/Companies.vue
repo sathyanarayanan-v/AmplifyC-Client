@@ -6,29 +6,16 @@
 </template>
 
 <script lang="ts">
-import Component from 'vue-class-component'
+import { Component } from 'vue-property-decorator'
 import { VueStrong } from '../typedVue'
 import DashboardWelcome from '../components/DashboardWelcome.vue'
-import { IUser } from '../interfaces/store/user'
-import { mapState } from 'vuex'
-import { IRootState } from '../interfaces/store/root'
 
 @Component<Companies>({
   components: {
     'dashboard-welcome': DashboardWelcome
-  },
-  computed: {
-    ...mapState({
-      user: state => (state as IRootState).auth.currentUser
-    })
-  },
-  async created() {
-    await this.$store.dispatch('getClientsForUser', this.user._id)
   }
 })
-export default class Companies extends VueStrong {
-  user?: IUser
-}
+export default class Companies extends VueStrong {}
 </script>
 
 <style></style>

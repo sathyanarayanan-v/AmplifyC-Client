@@ -13,7 +13,7 @@
         </v-btn>
       </v-col>
       <v-col cols="12" sm="8" md="6" lg="5" xl="5">
-        <h2 class="text-center my-auto ">Beez Innovation Labs Private Limited</h2>
+        <h2 class="text-center my-auto ">{{ companyName }}</h2>
       </v-col>
       <v-col cols="12" sm="12" md="12" lg="4" xl="4" class="justify-end d-flex">
         <v-btn
@@ -35,11 +35,16 @@
   </v-col>
 </template>
 <script lang="ts">
-import { Component } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
+import { ICompany } from '../interfaces/store/company'
 import { VueStrong } from '../typedVue'
-@Component
+@Component({})
 export default class CurrentCompanyHeader extends VueStrong {
-  items = [{ title: 'hello' }, { title: 'hello' }, { title: 'hello' }, { title: 'hello' }]
+  @Prop({ required: true, default: () => ({}) })
+  company: ICompany
+  @Prop({ required: true, type: String, default: '' })
+  companyName: string
+
   loading = false
 }
 </script>

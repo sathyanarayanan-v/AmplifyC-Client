@@ -1,6 +1,6 @@
 <template>
   <v-row class="mt-4">
-    <current-company-header />
+    <current-company-header :company="selectedCompany" :companyName="getCompanyName" />
     <v-col v-for="(item, idx) in [1, 2, 3]" :key="idx" cols="12" xl="4" lg="4" md="4" sm="4">
       <compliance-card />
     </v-col>
@@ -15,13 +15,37 @@ import CurrentCompanyHeader from './CurrentCompanyHeader.vue'
 import ComplianceCard from './ComplianceOverviewCard.vue'
 import CompliantDetails from './CompliantDetails.vue'
 import NonCompliantDetails from './NonCompliantDetails.vue'
-@Component({
+import { ICompany } from '../interfaces/store/company'
+import { mapState } from 'vuex'
+import { IRootState } from '../interfaces/store/root'
+@Component<CurrentCompany>({
   components: {
     'current-company-header': CurrentCompanyHeader,
     'compliance-card': ComplianceCard,
     'compliant-details': CompliantDetails,
     'non-compliant-details': NonCompliantDetails
+  },
+  async created() {
+    const { id } = this.$route.params
+    await this.$store.dispatch('findCompanyById', id)
+  },
+  computed: {
+    ...mapState({
+      selectedCompany: state => (state as IRootState).company.selectedCompany
+    })
   }
 })
-export default class CurrentCompany extends VueStrong {}
+export default class CurrentCompany extends VueStrong {
+  selectedCompany?: ICompany
+  get getCompanyName(): string {
+    if (this.selectedCompany) {
+      const companyName = this.selectedCompany.company_name.toLowerCase().replace('llp', 'LLP')
+      return companyName
+        .split(' ')
+        .map(name => name[0].toUpperCase() + name.substring(1))
+        .join(' ')
+    }
+    return ''
+  }
+}
 </script>

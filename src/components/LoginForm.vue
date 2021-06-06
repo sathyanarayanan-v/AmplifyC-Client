@@ -47,7 +47,7 @@
 
 <script lang="ts">
 import { VueStrong } from '../typedVue'
-import Component from 'vue-class-component'
+import { Component } from 'vue-property-decorator'
 import { Emit, Prop } from 'vue-property-decorator'
 
 @Component

@@ -1,6 +1,9 @@
 <template>
   <v-col xl="3" lg="4" md="6" cols="12">
-    <v-card @click="$router.push({ name: 'amplifyc-my-company', params: { id: '1' } })" class="bg-secondary pull-up">
+    <v-card
+      @click="$router.push({ name: 'amplifyc-my-company', params: { id: company._id } })"
+      class="bg-secondary pull-up"
+    >
       <v-container class="pa-5 pr-4">
         <v-row>
           <v-col sm="8" md="8" lg="8" xl="8">
@@ -26,7 +29,7 @@
                 </v-btn>
               </div>
             </div>
-            <p class="mt-7">Beez Innovation Labs Private Limited</p>
+            <p class="mt-7" style="height:48px !important">{{ getCompanyName }}</p>
             <p class="mb-0 mt-2">Date of Inc : 22/05/2021</p>
           </v-col>
           <v-col sm="4" md="4" lg="4" xl="4" class="flex-column d-flex justify-center">
@@ -55,11 +58,21 @@
 </template>
 
 <script lang="ts">
-import Component from 'vue-class-component'
+import { Component, Prop } from 'vue-property-decorator'
+import { ICompany } from '../interfaces/store/company'
 import { VueStrong } from '../typedVue'
 
-@Component
-export default class ClientList extends VueStrong {}
+@Component<ClientList>({})
+export default class ClientList extends VueStrong {
+  @Prop({ required: true, type: Object, default: () => ({}) }) company?: ICompany
+  get getCompanyName(): string {
+    const companyName = this.company.company_name.toLowerCase().replace('llp', 'LLP')
+    return companyName
+      .split(' ')
+      .map(name => name[0].toUpperCase() + name.substring(1))
+      .join(' ')
+  }
+}
 </script>
 
 <style></style>
