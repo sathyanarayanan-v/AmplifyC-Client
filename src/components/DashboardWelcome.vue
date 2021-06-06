@@ -7,8 +7,8 @@
             <v-img src="../assets/welcome_image.svg" height="100" width="100%" contain> </v-img>
           </v-col>
           <v-col lg="9" cols="12" class="pb-0 ma-auto">
-            <h2 class="font-weight-black primary-text">Hello Sathya, Welcome back!</h2>
-            <p class="mt-2 ml-1" v-html="quotes[randomNumber]"></p>
+            <h2 class="font-weight-black primary-text pa-2">Hello Sathya, Welcome back!</h2>
+            <p class="mt-2 ml-1 pa-2" v-html="quotes[randomNumber]"></p>
           </v-col>
         </v-row>
       </v-card>

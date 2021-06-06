@@ -73,7 +73,7 @@ const routes: Array<RouteConfig> = [
                 name: 'amplifyc-companies'
               },
               {
-                path: 'companies/compliance/:id',
+                path: 'companies/:id/compliance',
                 component: AmplifyCCurrentCompany,
                 name: 'amplifyc-my-company'
               }

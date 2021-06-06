@@ -1,88 +1,29 @@
 <template>
   <v-app-bar app height="80" color="#F8F9FB" elevation="0">
-    <div class="hidden-md-and-down nav-bar-items w-100">
+    <div class=" nav-bar-items w-100">
+      <v-spacer v-if="!permanent[$vuetify.breakpoint.name]"></v-spacer>
       <div class="app-primary-nav-items">
         <div class="nav-item">
-          <v-btn>
-            <v-icon>mdi-wechat</v-icon>
-          </v-btn>
-          <v-btn>
-            <v-icon>mdi-email-outline</v-icon>
-          </v-btn>
-          <v-btn>
-            <v-icon>mdi-wechat</v-icon>
-          </v-btn>
+          <v-icon v-if="permanent[$vuetify.breakpoint.name]" class="mr-1">mdi-menu</v-icon>
+          <v-img
+            alt="Vuetify Logo"
+            max-height="63"
+            max-width="120"
+            src="../assets/logo.png"
+            transition="scale-transition"
+            class="mx-auto"
+          />
         </div>
       </div>
       <v-spacer></v-spacer>
       <div class="app-secondary-nav-items">
         <div class="nav-item">
           <v-btn>
-            <v-icon>mdi-arrow-expand-all</v-icon>
-          </v-btn>
-          <v-text-field
-            solo
-            width="20px"
-            autocomplete="off"
-            class="nav-search"
-            clearable
-            label="Search"
-            append-icon="mdi-magnify"
-          ></v-text-field>
-          <v-btn>
-            <v-icon>mdi-wechat</v-icon>
-          </v-btn>
-          <v-btn>
             <v-icon>mdi-bell</v-icon>
           </v-btn>
           <v-menu bottom transition="scale-transition" class="nav-menu" content-class="custom-menu__content">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn icon v-bind="attrs" v-on="on">
-                <v-icon color="black">mdi-account</v-icon>
-              </v-btn>
-            </template>
-
-            <v-list>
-              <v-list-item v-for="(item, i) in items" :key="i">
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </div>
-      </div>
-    </div>
-    <div class="nav-bar-items w-100 hidden-lg-and-up">
-      <v-img
-        alt="Vuetify Logo"
-        max-height="63"
-        max-width="120"
-        src="../assets/logo.png"
-        transition="scale-transition"
-        class="mx-auto"
-      />
-      <div class="app-secondary-nav-items">
-        <div class="nav-item">
-          <v-btn>
-            <v-icon>mdi-arrow-expand-all</v-icon>
-          </v-btn>
-          <v-text-field
-            solo
-            width="20px"
-            autocomplete="off"
-            class="nav-search hidden-md-and-down"
-            clearable
-            label="Search"
-            append-icon="mdi-magnify"
-          ></v-text-field>
-          <v-btn>
-            <v-icon>mdi-wechat</v-icon>
-          </v-btn>
-          <v-btn>
-            <v-icon>mdi-bell</v-icon>
-          </v-btn>
-          <v-menu bottom transition="scale-transition" class="nav-menu" content-class="custom-menu__content">
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn icon v-bind="attrs" v-on="on">
+              <v-btn class="ml-2" icon v-bind="attrs" v-on="on">
                 <v-icon color="black">mdi-account</v-icon>
               </v-btn>
             </template>
@@ -106,6 +47,7 @@ import { VueStrong } from '../typedVue'
 @Component
 export default class TheToolBar extends VueStrong {
   items = [{ title: 'hello' }, { title: 'hello' }, { title: 'hello' }, { title: 'hello' }]
+  permanent = { xs: true, sm: true, md: false, lg: false, xl: false }
 }
 </script>
 

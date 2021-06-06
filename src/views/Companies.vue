@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-4">
+  <div class="px-2">
     <dashboard-welcome />
     <router-view />
   </div>

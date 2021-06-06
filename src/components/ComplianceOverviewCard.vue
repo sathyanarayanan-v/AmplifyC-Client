@@ -2,7 +2,8 @@
   <v-card class="pull-up ">
     <v-card-title class="justify-center bg-lightBlue justify-space-between"
       ><h5 class="primary-text text-center">
-        <v-icon color="#0252cc" class="mr-2 mb-1">mdi-alpha-m-box</v-icon>Ministry of Corporate Affair
+        <v-icon color="#0252cc" class="mr-2 mb-1">{{ currentCompliance.icon }}</v-icon
+        >{{ currentCompliance.name }}
       </h5>
     </v-card-title>
     <v-card-text>
@@ -27,11 +28,14 @@
 </template>
 
 <script lang="ts">
-import { Component } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
 import { VueStrong } from '../typedVue'
 
 @Component
-export default class ComplianceCard extends VueStrong {}
+export default class ComplianceCard extends VueStrong {
+  @Prop({ required: true, default: () => ({}) })
+  currentCompliance: { name: string; icon: string }
+}
 </script>
 
 <style></style>

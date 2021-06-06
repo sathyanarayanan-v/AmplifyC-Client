@@ -63,7 +63,11 @@ header {
 }
 .app-secondary-nav-items {
   display: flex;
-  width: 45% !important;
+  justify-content: flex-end !important;
+  .nav-item {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 .nav-item {
   display: flex;
@@ -103,7 +107,7 @@ header {
   }
 }
 .custom-menu__content {
-  margin-top: 2.45rem !important;
+  margin-top: 3.45rem !important;
 }
 .w-100 {
   width: 100% !important;
@@ -184,4 +188,18 @@ header {
   > header {
     border-radius: 12px 12px 0px 0px !important;
   }
+}
+.overflow-y-scroll {
+  overflow-y: scroll !important;
+}
+.sidebarTooltip {
+  left: 2px !important;
+  z-index: 10 !important;
+}
+.sidebarLogoutTooltip {
+  z-index: 10 !important;
+}
+.v-app-bar.v-app-bar--is-scrolled {
+  padding: 20px 20px 0px 20px !important;
+  height: 100px !important;
 }

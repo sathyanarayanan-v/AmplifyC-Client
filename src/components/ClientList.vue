@@ -1,5 +1,5 @@
 <template>
-  <v-col xl="3" lg="4" md="6" cols="12">
+  <v-col xl="3" lg="6" md="6" cols="12">
     <v-card
       @click="$router.push({ name: 'amplifyc-my-company', params: { id: company._id } })"
       class="bg-secondary pull-up"
@@ -66,7 +66,11 @@ import { VueStrong } from '../typedVue'
 export default class ClientList extends VueStrong {
   @Prop({ required: true, type: Object, default: () => ({}) }) company?: ICompany
   get getCompanyName(): string {
-    const companyName = this.company.company_name.toLowerCase().replace('llp', 'LLP')
+    const companyName = this.company.company_name
+      .toLowerCase()
+      .replace('llp', 'LLP')
+      .replace('private', 'PVT')
+      .replace('limited', 'Ltd.')
     return companyName
       .split(' ')
       .map(name => name[0].toUpperCase() + name.substring(1))

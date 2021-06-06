@@ -1,8 +1,8 @@
 <template>
   <v-row class="mt-4">
     <current-company-header :company="selectedCompany" :companyName="getCompanyName" />
-    <v-col v-for="(item, idx) in [1, 2, 3]" :key="idx" cols="12" xl="4" lg="4" md="4" sm="4">
-      <compliance-card />
+    <v-col v-for="(item, idx) in complianceList" :key="idx" cols="12" xl="4" lg="4" md="4" sm="4">
+      <compliance-card :currentCompliance="item" />
     </v-col>
     <compliant-details />
     <non-compliant-details />
@@ -37,9 +37,19 @@ import { IRootState } from '../interfaces/store/root'
 })
 export default class CurrentCompany extends VueStrong {
   selectedCompany?: ICompany
+
+  complianceList = [
+    { name: 'Ministry of Corporate Affairs', icon: 'mdi-alpha-m-circle' },
+    { name: 'Goods and Services Tax', icon: 'mdi-alpha-g-circle' },
+    { name: 'Income Tax Returns', icon: 'mdi-alpha-i-circle' }
+  ]
   get getCompanyName(): string {
     if (this.selectedCompany) {
-      const companyName = this.selectedCompany.company_name.toLowerCase().replace('llp', 'LLP')
+      const companyName = this.selectedCompany.company_name
+        .toLowerCase()
+        .replace('llp', 'LLP')
+        .replace('private', 'PVT')
+        .replace('limited', 'Ltd.')
       return companyName
         .split(' ')
         .map(name => name[0].toUpperCase() + name.substring(1))

@@ -1,25 +1,39 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
     class="color"
-    :width="210"
-    permanent
+    :width="300"
     elevation="2"
     app
+    :permanent="permanent[$vuetify.breakpoint.name]"
     :mini-variant.sync="mini"
-    mini-variant-width="70"
+    mini-variant-width="75"
   >
-    <v-list-item @click.stop="mini = !mini" class="py-3">
-      <v-img
-        v-if="!mini"
-        alt="Vuetify Logo"
-        max-height="63"
-        max-width="120"
-        src="../assets/logo.png"
-        transition="scale-transition"
-        class="mx-auto"
-      />
-      <v-icon color="#0252CC" v-if="mini">mdi-format-align-left</v-icon>
+    <v-list-item class="py-3">
+      <v-list-item-avatar>
+        <v-icon>mdi-account-circle</v-icon>
+      </v-list-item-avatar>
+
+      <v-list-item-content>
+        <v-tooltip bottom content-class="sidebarTooltip">
+          <template v-slot:activator="{ on, attrs }">
+            <span v-bind="attrs" v-on="on"
+              ><v-list-item-title v-text="'svvsathyanarayanan@gmail.com'"></v-list-item-title
+            ></span>
+          </template>
+          <span>svvsathyanarayanan@gmail.com</span>
+        </v-tooltip>
+      </v-list-item-content>
+
+      <v-list-item-action>
+        <v-tooltip bottom content-class="sidebarLogoutTooltip">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn v-bind="attrs" v-on="on" icon @click="$router.push({ name: 'amplifyc-my-account-login' })">
+              <v-icon>mdi-power</v-icon>
+            </v-btn>
+          </template>
+          <span>Logout</span>
+        </v-tooltip>
+      </v-list-item-action>
     </v-list-item>
 
     <v-divider color="#fff"></v-divider>
@@ -40,11 +54,23 @@
 
         <v-list-item-content>
           <v-list-item-title style="color:#0252CC !important"
-            ><h3>{{ item.title }}</h3></v-list-item-title
+            ><h5>{{ item.title }}</h5></v-list-item-title
           >
         </v-list-item-content>
       </v-list-item>
     </v-list>
+    <template v-slot:append>
+      <div class="pa-2" v-if="!mini" style="bottom:0px">
+        <v-btn text @click="mini = !mini">
+          <v-icon>mdi-menu-open</v-icon>
+        </v-btn>
+      </div>
+      <div class="pa-2" v-if="mini" style="bottom:0px">
+        <v-btn text @click="mini = !mini">
+          <v-icon>mdi-menu</v-icon>
+        </v-btn>
+      </div>
+    </template>
   </v-navigation-drawer>
 </template>
 
@@ -65,8 +91,9 @@ export default {
           target: { name: 'amplifyc-my-account' }
         }
       ],
-      drawer: false,
-      mini: true
+
+      mini: true,
+      permanent: { xs: false, sm: false, md: true, lg: true, xl: true }
     }
   }
 }
