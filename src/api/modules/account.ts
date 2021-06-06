@@ -1,4 +1,4 @@
-const ACCOUNT_ROOT = 'auth'
+export const ACCOUNT_ROOT = 'auth'
 
 export const myAccountAPI = {
   login: () => `${ACCOUNT_ROOT}/login`,
