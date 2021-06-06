@@ -2,7 +2,7 @@
   <v-card class="pull-up ">
     <v-card-title class="justify-center bg-lightBlue justify-space-between"
       ><h5 class="primary-text text-center">
-        <v-icon color="#0252cc" class="mr-2 mb-1">mdi-alpha-m-box</v-icon>Ministry of Corporate Affairs
+        <v-icon color="#0252cc" class="mr-2 mb-1">mdi-alpha-m-box</v-icon>Ministry of Corporate Affair
       </h5>
     </v-card-title>
     <v-card-text>

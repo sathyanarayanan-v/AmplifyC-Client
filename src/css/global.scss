@@ -1,5 +1,5 @@
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: sans-serif;
   user-select: none;
 }
 .centered {
@@ -178,4 +178,10 @@ header {
 }
 .v-btn {
   border-radius: 8px !important;
+}
+.v-data-table {
+  border-radius: 12px !important;
+  > header {
+    border-radius: 12px 12px 0px 0px !important;
+  }
 }

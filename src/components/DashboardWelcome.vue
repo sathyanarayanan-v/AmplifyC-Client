@@ -3,7 +3,7 @@
     <v-col lg="9" cols="12">
       <v-card class="pull-up bg-lightBlue" width="100%">
         <v-row>
-          <v-col lg="3" cols="12" class="py-2">
+          <v-col lg="3" cols="12" class="py-2 my-auto">
             <v-img src="../assets/welcome_image.svg" height="100" width="100%" contain> </v-img>
           </v-col>
           <v-col lg="9" cols="12" class="pb-0 ma-auto">
@@ -46,14 +46,14 @@ import AddCompany from '../components/AddCompany.vue'
 export default class DashboardWelcome extends VueStrong {
   quotes = [
     'Blank',
-    "Dude, suckin' at something is the first step at being sorta good at something.<br>-  Jake <small><em>(Adventure Time)</em></small>",
-    'Either I will find a way, or I will make one.<br> - Philip Sidney',
-    'Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time.<br>- Thomas A. Edison',
-    'You are never too old to set another goal or to dream a new dream.<br>- C.S Lewis',
-    'If you can dream it, you can do it.<br>- Walt Disney',
-    'Never give up, for that is just the place and time that the tide will turn.<br>- Harriet Beecher Stowe',
-    "I know where I'm going and I know the truth, and I don't have to be what you want me to be. I'm free to be what I want.<br>- Muhammad Ali",
-    'If you always put limit on everything you do, physical or anything else. It will spread into your work and into your life. There are no limits. There are only plateaus, and you must not stay there, you must go beyond them.<br>- Bruce Lee'
+    "Dude, suckin' at something is the first step at being sorta good at something.<br>- <b> Jake </b> <small><em>(Adventure Time)</em></small>",
+    'Either I will find a way, or I will make one.<br> - <b>Philip Sidney</b>',
+    'Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time.<br>- <b>Thomas A. Edison</b>',
+    'You are never too old to set another goal or to dream a new dream.<br>- <b>C.S Lewis</b>',
+    'If you can dream it, you can do it.<br>- <b>Walt Disney</b>',
+    'Never give up, for that is just the place and time that the tide will turn.<br>- <b>Harriet Beecher Stowe</b>',
+    "I know where I'm going and I know the truth, and I don't have to be what you want me to be. I'm free to be what I want.<br>- <b>Muhammad Ali</b>",
+    'If you always put limit on everything you do, physical or anything else. It will spread into your work and into your life. There are no limits. There are only plateaus, and you must not stay there, you must go beyond them.<br>- <b>Bruce Lee</b>'
   ]
 }
 </script>

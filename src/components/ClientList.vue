@@ -26,8 +26,8 @@
                 </v-btn>
               </div>
             </div>
-            <h4 class="mt-7">Beez Innovation Labs Private Limited</h4>
-            <p class="mb-0 mt-2">Date of inc : 22/05/2021</p>
+            <p class="mt-7">Beez Innovation Labs Private Limited</p>
+            <p class="mb-0 mt-2">Date of Inc : 22/05/2021</p>
           </v-col>
           <v-col sm="4" md="4" lg="4" xl="4" class="flex-column d-flex justify-center">
             <v-row class="mt-2">
