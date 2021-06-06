@@ -7,7 +7,7 @@ import { IUser } from '@/interfaces/store/user'
 import router from '@/router'
 import store from '@/store'
 function loginSuccess() {
-  router.push({ name: 'amplifyc-my-company' })
+  router.push({ name: 'amplifyc-companies' })
   store.dispatch('createNotification', {
     group: 'notification',
     title: 'You have successfully logged in',

@@ -1,0 +1,45 @@
+<template>
+  <v-col cols="12">
+    <v-row>
+      <v-col cols="12" sm="4" md="6" lg="3" xl="3">
+        <v-btn
+          @click="$router.push({ name: 'amplifyc-companies' })"
+          class="text-capitalize elevation-0 mr-2  bg-primary menu-btn my-auto"
+          height="32"
+          block
+        >
+          <v-icon small class="mr-2">mdi-arrow-left</v-icon>
+          Back
+        </v-btn>
+      </v-col>
+      <v-col cols="12" sm="8" md="6" lg="5" xl="5">
+        <h3 class="text-center my-auto">Beez Innovation Labs Private Limited</h3>
+      </v-col>
+      <v-col cols="12" sm="12" md="12" lg="4" xl="4" class="justify-end d-flex">
+        <v-btn
+          style="width:50%"
+          @click="loading = !loading"
+          :disabled="loading"
+          class="text-capitalize elevation-0 mr-2  bg-primary menu-btn"
+          height="32"
+        >
+          <v-icon small class="mr-2" :class="{ 'mdi-spin': loading }">mdi-sync</v-icon>
+          Sync
+        </v-btn>
+        <v-btn style="width:50%" class="text-capitalize elevation-0 mr-2  bg-primary menu-btn" height="32">
+          <v-icon small class="mr-2">mdi-cloud-download-outline</v-icon>
+          Download
+        </v-btn>
+      </v-col>
+    </v-row>
+  </v-col>
+</template>
+<script lang="ts">
+import { Component } from 'vue-property-decorator'
+import { VueStrong } from '../typedVue'
+@Component
+export default class CurrentCompanyHeader extends VueStrong {
+  items = [{ title: 'hello' }, { title: 'hello' }, { title: 'hello' }, { title: 'hello' }]
+  loading = false
+}
+</script>

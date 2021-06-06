@@ -7,8 +7,10 @@ import AmplifyCValidateForgotPasswordCode from '../components/ValidateForgotPass
 import AmplifyCResetPassword from '../components/ResetPassword.vue'
 import AmplifyCCreateAccount from '../components/CreateAccount.vue'
 import AmplifyCMainLayout from '@/layout/TheMainLayout.vue'
-import AmplifyCMyCompany from '@/views/MyCompany.vue'
+import AmplifyCMyCompany from '@/views/Companies.vue'
 import AmplifyCAppLayout from '@/layout/TheAppLayout.vue'
+import AmplifyCClientListContainer from '@/components/ClientListContainer.vue'
+import AmplifyCCurrentCompany from '@/components/CurrentCompany.vue'
 import { AuthGuard } from './authGuard'
 
 Vue.use(VueRouter)
@@ -17,7 +19,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     component: AmplifyCMainLayout,
-    redirect: { name: 'amplifyc-my-company' },
+    redirect: { name: 'amplifyc-companies' },
     children: [
       {
         path: 'my-account',
@@ -56,13 +58,26 @@ const routes: Array<RouteConfig> = [
         path: 'home',
         component: AmplifyCAppLayout,
         name: 'amplifyc-home',
-        redirect: { name: 'amplifyc-my-company' },
+        redirect: { name: 'amplifyc-companies' },
         beforeEnter: AuthGuard,
         children: [
           {
             path: 'dashboard',
             component: AmplifyCMyCompany,
-            name: 'amplifyc-my-company'
+            name: 'amplifyc-dashboard',
+            redirect: { name: 'amplifyc-companies' },
+            children: [
+              {
+                path: 'companies',
+                component: AmplifyCClientListContainer,
+                name: 'amplifyc-companies'
+              },
+              {
+                path: 'companies/compliance/:id',
+                component: AmplifyCCurrentCompany,
+                name: 'amplifyc-my-company'
+              }
+            ]
           }
         ]
       }

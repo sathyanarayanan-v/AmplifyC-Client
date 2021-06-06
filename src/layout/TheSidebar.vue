@@ -19,7 +19,7 @@
         transition="scale-transition"
         class="mx-auto"
       />
-      <v-icon v-if="mini">mdi-format-align-left</v-icon>
+      <v-icon color="#0252CC" v-if="mini">mdi-format-align-left</v-icon>
     </v-list-item>
 
     <v-divider color="#fff"></v-divider>
@@ -35,11 +35,13 @@
         dark
       >
         <v-list-item-icon>
-          <v-icon class="" color="">{{ item.icon }}</v-icon>
+          <v-icon class="" color="#0252CC">{{ item.icon }}</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title color="">{{ item.title }}</v-list-item-title>
+          <v-list-item-title style="color:#0252CC !important"
+            ><h3>{{ item.title }}</h3></v-list-item-title
+          >
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -55,7 +57,12 @@ export default {
         {
           title: 'Dashboard',
           icon: 'mdi-home',
-          target: { name: 'my-company' }
+          target: { name: 'amplifyc-companies' }
+        },
+        {
+          title: 'Tools',
+          icon: 'mdi-tools',
+          target: { name: 'amplifyc-my-account' }
         }
       ],
       drawer: false,

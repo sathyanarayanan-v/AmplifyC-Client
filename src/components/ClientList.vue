@@ -1,6 +1,6 @@
 <template>
   <v-col xl="3" lg="4" md="6" cols="12">
-    <v-card class="bg-secondary pull-up">
+    <v-card @click="$router.push({ name: 'amplifyc-my-company', params: { id: '1' } })" class="bg-secondary pull-up">
       <v-container class="pa-5 pr-4">
         <v-row>
           <v-col sm="8" md="8" lg="8" xl="8">
