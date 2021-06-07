@@ -95,7 +95,7 @@ export default {
         }
       ],
 
-      mini: false,
+      mini: true,
       permanent: { xs: false, sm: false, md: true, lg: true, xl: true }
     }
   },

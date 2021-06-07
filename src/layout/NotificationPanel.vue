@@ -38,44 +38,31 @@
 
     <v-divider color="#fff"></v-divider>
 
-    <!-- <v-list nav>
-      <v-list-item
-        v-for="item in items"
-        :key="item.title"
-        link
-        class="sidebar mt-2 py-0"
-        :to="item.target"
-        color="#0252CC"
-        dark
-      >
-        <v-list-item-icon>
-          <v-icon class="" color="#0252CC">{{ item.icon }}</v-icon>
-        </v-list-item-icon>
-
-        <v-list-item-content>
-          <v-list-item-title style="color:#0252CC !important" class="ml-11"
-            ><h5>{{ item.title }}</h5></v-list-item-title
-          >
-        </v-list-item-content>
-      </v-list-item>
+    <v-list three-line>
+      <template v-for="(notification, idx) in notifications">
+        <v-list-item :key="idx">
+          <v-list-item-avatar>
+            <v-icon color="success">mdi-check-decagram</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>{{ notification.title }}</v-list-item-title>
+            <v-list-item-subtitle>{{ 'Just now' }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider
+          notification
+          :key="idx"
+          v-if="idx !== 0 || idx !== notifications.length - 1"
+          :inset="false"
+        ></v-divider>
+      </template>
     </v-list>
-    <template v-slot:append>
-      <div class="pa-2" v-if="!mini" style="bottom:0px">
-        <v-btn text>
-          <v-icon>mdi-menu-open</v-icon>
-        </v-btn>
-      </div>
-      <div class="pa-2" style="bottom:0px">
-        <v-btn text>
-          <v-icon>mdi-menu</v-icon>
-        </v-btn>
-      </div>
-    </template> -->
   </v-navigation-drawer>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+
 export default {
   name: 'NotificationPanel',
   data() {
@@ -83,7 +70,8 @@ export default {
   },
   computed: {
     ...mapState({
-      notificationPanel: state => state.ui.notificationPanel
+      notificationPanel: state => state.ui.notificationPanel,
+      notifications: state => state.notification.notifications
     })
   },
   methods: {

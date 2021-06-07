@@ -1,7 +1,7 @@
 <template>
   <v-col cols="12">
     <v-row>
-      <v-col cols="12" sm="4" md="6" lg="3" xl="3">
+      <v-col cols="12" sm="4" md="6" lg="2" xl="2">
         <v-btn
           @click="$router.push({ name: 'amplifyc-companies' })"
           class="text-capitalize elevation-0 mr-2  bg-primary menu-btn my-auto"
@@ -12,10 +12,10 @@
           Back
         </v-btn>
       </v-col>
-      <v-col cols="12" sm="8" md="6" lg="5" xl="5">
+      <v-col cols="12" sm="8" md="6" lg="7" xl="7">
         <h2 class="text-center my-auto ">{{ companyName }}</h2>
       </v-col>
-      <v-col cols="12" sm="12" md="12" lg="4" xl="4" class="justify-end d-flex">
+      <v-col cols="12" sm="12" md="12" lg="3" xl="3" class="justify-end d-flex pr-1">
         <v-btn
           style="width:50%"
           @click="loading = !loading"
@@ -26,7 +26,7 @@
           <v-icon small class="mr-2" :class="{ 'mdi-spin': loading }">mdi-sync</v-icon>
           Sync
         </v-btn>
-        <v-btn style="width:50%" class="text-capitalize elevation-0 mr-2  bg-primary menu-btn" height="32">
+        <v-btn style="width:50%" class="text-capitalize elevation-0 bg-primary menu-btn" height="32">
           <v-icon small class="mr-2">mdi-cloud-download-outline</v-icon>
           Download
         </v-btn>

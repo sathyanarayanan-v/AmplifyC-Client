@@ -1,6 +1,7 @@
 * {
   font-family: sans-serif;
   user-select: none;
+  scrollbar-width: thin;
 }
 .centered {
   position: fixed;
@@ -201,7 +202,6 @@
 .sidebarLogoutTooltip {
   z-index: 10 !important;
 }
-// .v-app-bar.v-app-bar--is-scrolled {
-//   padding: 20px 20px 0px 0px !important;
-//   height: 100px !important;
-// }
+nav {
+  height: 100% !important;
+}

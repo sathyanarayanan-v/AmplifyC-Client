@@ -1,5 +1,5 @@
 <template>
-  <v-row class="mt-4">
+  <v-row class="mt-4 px-3">
     <current-company-header :company="selectedCompany" :companyName="getCompanyName" />
     <v-col v-for="(item, idx) in complianceList" :key="idx" cols="12" xl="4" lg="4" md="4" sm="4">
       <compliance-card :currentCompliance="item" />

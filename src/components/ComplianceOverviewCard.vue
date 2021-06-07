@@ -1,10 +1,11 @@
 <template>
   <v-card class="pull-up ">
-    <v-card-title class="justify-center bg-lightBlue justify-space-between"
+    <v-card-title style="height:96px" class="justify-center bg-lightBlue justify-space-between"
       ><h5 class="primary-text text-center">
         <v-icon color="#0252cc" class="mr-2 mb-1">{{ currentCompliance.icon }}</v-icon
         >{{ currentCompliance.name }}
       </h5>
+      <div class="d-flex justify-space-between"></div>
     </v-card-title>
     <v-card-text>
       <v-row>

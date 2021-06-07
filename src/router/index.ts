@@ -62,22 +62,22 @@ const routes: Array<RouteConfig> = [
         beforeEnter: AuthGuard,
         children: [
           {
-            path: 'dashboard',
+            path: 'companies',
             component: AmplifyCMyCompany,
             name: 'amplifyc-dashboard',
             redirect: { name: 'amplifyc-companies' },
             children: [
               {
-                path: 'companies',
+                path: 'dashboard',
                 component: AmplifyCClientListContainer,
                 name: 'amplifyc-companies'
-              },
-              {
-                path: 'companies/:id/compliance',
-                component: AmplifyCCurrentCompany,
-                name: 'amplifyc-my-company'
               }
             ]
+          },
+          {
+            path: 'companies/:id/compliance',
+            component: AmplifyCCurrentCompany,
+            name: 'amplifyc-my-company'
           }
         ]
       }
