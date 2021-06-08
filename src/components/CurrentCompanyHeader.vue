@@ -19,11 +19,10 @@
         <v-btn
           style="width:50%"
           @click="loading = !loading"
-          :disabled="loading"
           class="text-capitalize elevation-0 mr-2  bg-primary menu-btn"
           height="32"
         >
-          <v-icon small class="mr-2" :class="{ 'mdi-spin': loading }">mdi-sync</v-icon>
+          <v-icon small class="mr-2" :class="{ 'mdi-spin': loading }"> mdi-cached</v-icon>
           Sync
         </v-btn>
         <v-btn style="width:50%" class="text-capitalize elevation-0 bg-primary menu-btn" height="32">

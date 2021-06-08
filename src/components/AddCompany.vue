@@ -1,28 +1,18 @@
 <template>
-  <v-card>
-    <v-card-title style="color:#1C62A1" class="headline grey lighten-2">
-      Add new company
-      <v-spacer></v-spacer>
-      <v-icon @click="closeDialog" color="error">mdi-close-circle</v-icon>
-    </v-card-title>
-    <v-card-text class="px-3">
-      <v-container class="mt-4" fluid>
+  <v-dialog v-model="dialog" width="600">
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn v-on="on" v-bind="attrs" class="mb-0 text-capitalize bg-primary white--text" block>
+        <v-icon class="mr-2">mdi-plus-circle-outline</v-icon>
+        <h4>Add Company</h4>
+      </v-btn>
+    </template>
+    <v-card>
+      <v-card-title class="bg-lightBlue">Add Company</v-card-title>
+      <v-card-text class="pt-5">
         <v-form v-model="valid">
           <v-row>
-            <v-col xs="12" sm="12" md="6" lg="6" xl="6">
+            <v-col sm="12" lg="6" xl="6" md="6">
               <v-autocomplete
-                label="Type of company"
-                solo
-                v-model="typeOfCompany"
-                :items="typesOfCompanies"
-                item-text="type"
-                item-value="value"
-                :rules="[rules.required]"
-              >
-              </v-autocomplete>
-            </v-col>
-            <v-col xs="12" sm="12" md="6" lg="6" xl="6">
-              <!-- <v-autocomplete
                 v-model="company"
                 :loading="loading"
                 :items="companies"
@@ -32,56 +22,73 @@
                 @change="change"
                 :item-text="getCompanyName"
                 item-value="companyId"
-                label="Search for your companies *"
-                solo
-              ></v-autocomplete> -->
-              <v-text-field label="MCA Search" solo v-if="mcaSearchRequired"></v-text-field>
-              <v-text-field
-                label="Company Name"
+                label="Search for your companies*"
                 outlined
-                placeholder="value.."
-                v-if="!mcaSearchRequired"
-              ></v-text-field>
+                :rules="[
+                  value => {
+                    if (!!value) {
+                      return true
+                    } else {
+                      return 'Please select a company'
+                    }
+                  }
+                ]"
+              ></v-autocomplete>
+            </v-col>
+            <v-col sm="12" lg="6" xl="6" md="6">
+              <v-text-field solo></v-text-field>
             </v-col>
           </v-row>
         </v-form>
-      </v-container>
-    </v-card-text>
-  </v-card>
+      </v-card-text>
+    </v-card>
+  </v-dialog>
 </template>
-
 <script lang="ts">
-import { Component, Emit, Watch } from 'vue-property-decorator'
 import { VueStrong } from '../typedVue'
-@Component({})
-export default class AddCompany extends VueStrong {
-  typeOfCompany = ''
-  valid = false
-  mcaSearchRequired = false
-  rules = { required: (value: string) => (value ? true : 'This is a required field') }
-  typesOfCompanies = [
-    { type: 'Private Limited Company', value: 'PVT' },
-    { type: 'Limited Liability Partnership', value: 'LLP' },
-    { type: 'Public Limited Company', value: 'PUB' },
-    { type: 'One Person Company', value: 'OPC' },
-    { type: 'Section 8 Companies', value: 'SEC8' },
-    { type: 'Proprietorship', value: 'PROP' },
-    { type: 'Partnership', value: 'PART' },
-    { type: 'Trust', value: 'TRST' },
-    { type: 'Society', value: 'SCTY' },
-    { type: 'NGO', value: 'NGO' }
-  ]
+import { Component, Watch } from 'vue-property-decorator'
+import { mapState } from 'vuex'
+import { IRootState } from '../interfaces/store/root'
 
-  @Emit('close-dialog')
-  closeDialog() {
-    return false
+@Component<AddCompany>({
+  computed: {
+    ...mapState({
+      companies: state => (state as IRootState).company.nameSearchResults.companies || []
+    })
+  }
+})
+export default class AddCompany extends VueStrong {
+  // Data variables
+  dialog = false
+  valid = false
+  loading = false
+  companyName = ''
+  incorporationNumber = ''
+  search = ''
+  company = null
+
+  // Methods
+  change(companyNameWithCin: string) {
+    this.companyName = companyNameWithCin.split(' — ')[0]
+    this.incorporationNumber = companyNameWithCin.split(' — ')[1]
+  }
+  getCompanyName(company: { companyName: string; companyID: string }) {
+    return company.companyName + ' — ' + company.companyID
   }
 
-  @Watch('typeOfCompany', { immediate: true })
-  onTypeOfCompanyChanged(newType: string, oldType: string) {
-    this.mcaSearchRequired = ['OPC', 'PVT', 'LLP'].includes(newType)
+  // Watch Variables
+  @Watch('search')
+  async onSearchStringChange(newValue: string, oldVal: string) {
+    this.loading = true
+    if (newValue && !newValue.includes(' — ') && newValue !== oldVal) {
+      try {
+        await this.$store.dispatch('searchCompaniesInMca', newValue)
+      } catch (err) {
+        console.error('Error while searching for company')
+      }
+    }
+    this.loading = false
   }
 }
 </script>
-
 <style></style>

@@ -2,6 +2,8 @@
   <v-app-bar app height="80" color="#F8F9FB" elevation="0">
     <div class=" nav-bar-items w-100 justify-space-between">
       <v-icon v-if="permanent[$vuetify.breakpoint.name]" @click="toggleDrawer">mdi-menu</v-icon>
+      <div class="ml-6"></div>
+      <div class="ml-6"></div>
       <v-img
         alt="Vuetify Logo"
         max-height="63"

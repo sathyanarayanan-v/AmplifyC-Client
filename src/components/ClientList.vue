@@ -5,7 +5,7 @@
         <v-row>
           <v-col sm="8" md="8" lg="8" xl="8">
             <div class="d-flex justify-space-between">
-              <div class="d-flex overflow-y-scroll">
+              <div class="d-flex overflow-x-scroll">
                 <v-btn class="text-capitalize elevation-0 mr-2  menu-btn-inverted" height="24">
                   MCA
                   <v-icon small class="ml-2">

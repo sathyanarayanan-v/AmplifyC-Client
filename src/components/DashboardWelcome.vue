@@ -20,16 +20,12 @@
             <h3 class="font-weight-black primary-text mb-4 text-center">You have new Clients? Add them!</h3>
           </v-col>
           <v-col lg="12" md="6" sm="6" xl="12" cols="12" class="pb-0">
-            <v-btn class="mb-0 text-capitalize bg-primary white--text" block>
-              <v-icon class="mr-2">mdi-plus-circle-outline</v-icon>
-              <h4>Add Company</h4>
-            </v-btn>
+            <add-company />
           </v-col>
         </v-row>
       </v-card>
-    </v-col>
-  </v-row></template
->
+    </v-col> </v-row
+></template>
 
 <script lang="ts">
 import { Component } from 'vue-property-decorator'

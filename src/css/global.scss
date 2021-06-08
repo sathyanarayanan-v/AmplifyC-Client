@@ -1,7 +1,7 @@
 * {
   font-family: sans-serif;
   user-select: none;
-  scrollbar-width: thin;
+  scrollbar-color: white white !important;
 }
 .centered {
   position: fixed;
@@ -192,8 +192,8 @@
     border-radius: 12px 12px 0px 0px !important;
   }
 }
-.overflow-y-scroll {
-  overflow-y: scroll !important;
+.overflow-x-scroll {
+  overflow-x: scroll !important;
 }
 .sidebarTooltip {
   left: 25px !important;

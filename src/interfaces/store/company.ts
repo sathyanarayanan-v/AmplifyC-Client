@@ -25,7 +25,14 @@ export interface ICompany {
   type?: string
   createdByModel: string
 }
+
+export interface INameSearchResult {
+  errors?: Array<{ errorCode: string; errorDescription: string }>
+  success: 'false' | 'true'
+  companies: Array<{ companyID: string; companyName: string }>
+}
 export interface ICompanyState {
   companies: Array<ICompany>
   selectedCompany: ICompany
+  nameSearchResults: INameSearchResult
 }

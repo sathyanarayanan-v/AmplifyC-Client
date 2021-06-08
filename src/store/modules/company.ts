@@ -1,4 +1,4 @@
-import { ICompany, ICompanyState } from '@/interfaces/store/company'
+import { ICompany, ICompanyState, INameSearchResult } from '@/interfaces/store/company'
 import { companyApi } from './../../api/modules/company'
 import { ICommit } from './../../interfaces/common.interface'
 const mutations = {
@@ -7,6 +7,9 @@ const mutations = {
   },
   setCurrentCompany(state: ICompanyState, company: ICompany) {
     state.selectedCompany = company
+  },
+  setNameSearchResults(state: ICompanyState, nameSearchResults: INameSearchResult) {
+    state.nameSearchResults = nameSearchResults
   }
 }
 const actions = {
@@ -25,11 +28,24 @@ const actions = {
     } catch (error) {
       // log error
     }
+  },
+  async searchCompaniesInMca({ commit }: ICommit, name: string) {
+    try {
+      const nameSearchResults = await companyApi.searchCompaniesInMcaByName(name)
+      commit('setNameSearchResults', nameSearchResults)
+    } catch (error) {
+      // log error
+    }
   }
 }
 const state: ICompanyState = {
   companies: [],
-  selectedCompany: null
+  selectedCompany: null,
+  nameSearchResults: {
+    errors: [],
+    companies: [],
+    success: null
+  }
 }
 
 export default {
