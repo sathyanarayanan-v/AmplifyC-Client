@@ -19,7 +19,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     component: AmplifyCMainLayout,
-    redirect: { name: 'amplifyc-companies' },
+    redirect: { name: 'amplifyc-home' },
     children: [
       {
         path: 'my-account',

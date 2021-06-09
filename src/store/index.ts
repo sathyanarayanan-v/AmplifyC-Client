@@ -4,6 +4,7 @@ import AuthModule from './modules/account'
 import NotificationModule from './modules/notification'
 import CompanyModule from './modules/company'
 import UIModule from './modules/ui'
+import GSTModule from './modules/gst'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -11,6 +12,7 @@ export default new Vuex.Store({
     auth: AuthModule,
     company: CompanyModule,
     ui: UIModule,
-    notification: NotificationModule
+    notification: NotificationModule,
+    gst: GSTModule
   }
 })

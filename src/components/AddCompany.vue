@@ -56,7 +56,7 @@
                 @change="change"
                 :item-text="getCompanyName"
                 item-value="companyId"
-                label="Company name (atleast 3 characters)"
+                label="Company name (Enter atleast 3 characters)"
                 solo
                 :rules="[
                   value => {
@@ -80,6 +80,42 @@
               ></v-text-field>
             </v-col>
           </v-row>
+          <v-row>
+            <v-col cols="12" sm="12" lg="6" xl="6" md="12" xs="12">
+              <h4 class="font-weight-black mb-2">Captcha Image</h4>
+              <div class="d-flex">
+                <v-img :src="`data:image/png;base64,${image}`" max-width="200" max-height="100" class="mr-4"></v-img>
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn icon v-bind="attrs" v-on="on" class="my-auto" @click="getCaptcha"
+                      ><v-icon color="#0252cc" v-bind:class="{ 'mdi-spin': isFetchingCaptcha }"
+                        >mdi-cached</v-icon
+                      ></v-btn
+                    >
+                  </template>
+                  <span>Refresh Captcha</span>
+                </v-tooltip>
+              </div>
+            </v-col>
+            <v-col cols="12" sm="12" lg="6" xl="6" md="12" xs="12">
+              <h4 class="font-weight-black mb-2">Captcha</h4>
+              <v-text-field v-model="captcha" solo placeholder="Enter captcha" :rules="captchaRules"></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <!-- Dummy Col -->
+            <v-col cols="0" sm="0" lg="3" xl="3" md="0" xs="0"></v-col>
+            <v-col cols="12" sm="12" lg="6" xl="6" md="12" xs="12" class="d-flex justify-center">
+              <v-btn :disabled="!valid" class="bg-success mr-2 text-capitalize"
+                ><v-icon class="mr-2">mdi-check-decagram</v-icon>Sumbit
+              </v-btn>
+              <v-btn class="bg-error ml-2 text-capitalize" @click="closeDialog"
+                ><v-icon class="mr-2">mdi-close-circle-outline</v-icon>Cancel</v-btn
+              >
+            </v-col>
+            <!-- Dummy Col -->
+            <v-col cols="0" sm="0" lg="3" xl="3" md="0" xs="0"></v-col>
+          </v-row>
         </v-form>
       </v-card-text>
     </v-card>
@@ -94,7 +130,9 @@ import { validPan } from '../utils'
 @Component<AddCompany>({
   computed: {
     ...mapState({
-      companies: state => (state as IRootState).company.nameSearchResults.companies || []
+      companies: state => (state as IRootState).company.nameSearchResults.companies || [],
+      image: state => (state as IRootState).gst.captcha?.image || '',
+      idToken: state => (state as IRootState).gst.captcha?.idToken || ''
     }),
     fullscreen() {
       switch (this.$vuetify.breakpoint.name) {
@@ -120,7 +158,7 @@ export default class AddCompany extends VueStrong {
   companyName = ''
   incorporationNumber = ''
   search = ''
-  company = null
+  company: { companyName: string; companyID: string } = null
   pan = ''
   panRules = [
     (value: string) => {
@@ -128,6 +166,9 @@ export default class AddCompany extends VueStrong {
       return 'PAN is required'
     }
   ]
+  captchaRules = [(value: string) => (value ? true : 'Captcha is required')]
+  captcha = ''
+  isFetchingCaptcha = false
 
   // Methods
   change(companyNameWithCin: string) {
@@ -143,6 +184,16 @@ export default class AddCompany extends VueStrong {
   onPanInput(pan: string) {
     this.pan = pan.toUpperCase()
   }
+  async getCaptcha() {
+    try {
+      this.isFetchingCaptcha = true
+      await this.$store.dispatch('getCaptcha')
+    } catch (error) {
+      // log error
+    } finally {
+      this.isFetchingCaptcha = false
+    }
+  }
 
   // Watch Variables
   @Watch('search')
@@ -156,6 +207,12 @@ export default class AddCompany extends VueStrong {
       }
     }
     this.loading = false
+  }
+  @Watch('dialog')
+  onDialogChange(newValue: boolean, oldVal: boolean) {
+    if (newValue !== oldVal && newValue === true) {
+      this.$store.dispatch('getCaptcha')
+    }
   }
 }
 </script>

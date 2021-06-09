@@ -11,6 +11,7 @@ const errorHandler = (err: any) => {
   if (err.message) {
     if (err.status === UNAUTHORIZED || err.message.includes('401')) {
       router.push({ name: 'amplifyc-my-account-login' })
+      return
     }
   }
   if (typeof err.response.data === 'string') {

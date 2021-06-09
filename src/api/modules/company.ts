@@ -1,7 +1,7 @@
 import axiosInstance from '@/api/axios'
 import { USER_ROOT } from './user'
 
-const COMPANY_ROOT = 'companies'
+export const COMPANY_ROOT = 'companies'
 
 export const companyApi = {
   getCompaniesForUser: (id: string) => axiosInstance.get(`${USER_ROOT}/${id}/companies`),
