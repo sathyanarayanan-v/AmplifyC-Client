@@ -14,6 +14,9 @@
       </v-btn>
     </template>
     <v-card class="bg-lightWHite">
+      <!-- 
+        * Add Company header
+      -->
       <v-card-title class="bg-white justify-space-between elevation-2 pa-3">
         <div class="d-flex">
           <v-img
@@ -41,6 +44,9 @@
           <span>Close</span>
         </v-tooltip>
       </v-card-title>
+      <!-- 
+        * Add company card with content
+       -->
       <v-card-text class="pt-5 ">
         <v-form v-model="valid">
           <v-row>
@@ -127,12 +133,16 @@ import { Component, Watch } from 'vue-property-decorator'
 import { mapState } from 'vuex'
 import { IRootState } from '../interfaces/store/root'
 import { validPan } from '../utils'
+import { IUser } from '../interfaces/store/user'
+import { ICompany } from '../interfaces/store/company'
 @Component<AddCompany>({
   computed: {
     ...mapState({
       companies: state => (state as IRootState).company.nameSearchResults.companies || [],
       image: state => (state as IRootState).gst.captcha?.image || '',
-      idToken: state => (state as IRootState).gst.captcha?.idToken || ''
+      idToken: state => (state as IRootState).gst.captcha?.idToken || '',
+      user: state => (state as IRootState).auth.currentUser,
+      selectedCompany: state => (state as IRootState).company.selectedCompany
     }),
     fullscreen() {
       switch (this.$vuetify.breakpoint.name) {
@@ -151,15 +161,30 @@ import { validPan } from '../utils'
   }
 })
 export default class AddCompany extends VueStrong {
+  // Computed state variables
+  companies?: Array<{ companyID: string; companyName: string }>
+  image?: string
+  idToken?: string
+  user?: IUser
+  selectedCompany?: ICompany
+
   // Data variables
   dialog = false
   valid = false
   loading = false
-  companyName = ''
-  incorporationNumber = ''
+  isFetchingCaptcha = false
+
+  // v-model variables
+  company_name = ''
+  incorporation_number = ''
+  captcha = ''
+  pan = ''
+
+  // Auto-complete vatiables
   search = ''
   company: { companyName: string; companyID: string } = null
-  pan = ''
+
+  // Rules
   panRules = [
     (value: string) => {
       if (value) return validPan(value) ? true : 'Invalid PAN'
@@ -167,13 +192,11 @@ export default class AddCompany extends VueStrong {
     }
   ]
   captchaRules = [(value: string) => (value ? true : 'Captcha is required')]
-  captcha = ''
-  isFetchingCaptcha = false
 
   // Methods
   change(companyNameWithCin: string) {
-    this.companyName = companyNameWithCin.split(' — ')[0]
-    this.incorporationNumber = companyNameWithCin.split(' — ')[1]
+    this.company_name = companyNameWithCin.split(' — ')[0]
+    this.incorporation_number = companyNameWithCin.split(' — ')[1]
   }
   getCompanyName(company: { companyName: string; companyID: string }) {
     return company.companyName + ' — ' + company.companyID
@@ -192,6 +215,22 @@ export default class AddCompany extends VueStrong {
       // log error
     } finally {
       this.isFetchingCaptcha = false
+    }
+  }
+  async submit() {
+    const panSearch = {
+      pan: this.pan,
+      idToken: this.idToken,
+      captcha: this.captcha,
+      incorporation_number: this.incorporation_number
+    }
+    const companyToCreate = {
+      incorporation_number: this.incorporation_number,
+      company_name: this.company_name
+    }
+    const affiliateToCreate = {
+      user_id: this.user._id,
+      company_id: this.selectedCompany._id
     }
   }
 

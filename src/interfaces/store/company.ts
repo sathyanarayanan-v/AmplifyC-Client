@@ -1,4 +1,5 @@
 export interface ICompany {
+  _id: string
   incorporation_number?: string
   company_name: string
   date_of_incorporation?: Date
