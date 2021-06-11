@@ -17,6 +17,7 @@
     "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
     "core-js": "^3.6.5",
+    "moment": "^2.24.0",
     "roboto-fontface": "*",
     "standard": "^16.0.3",
     "vue": "^2.6.11",

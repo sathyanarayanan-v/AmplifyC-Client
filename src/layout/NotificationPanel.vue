@@ -42,11 +42,18 @@
       <template v-for="(notification, idx) in notifications">
         <v-list-item :key="notification.time">
           <v-list-item-avatar>
-            <v-icon color="success">mdi-check-decagram</v-icon>
+            <v-icon :color="notification.data.color">{{ notification.data.icon }}</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>{{ notification.title }}</v-list-item-title>
-            <v-list-item-subtitle>{{ 'Just now' }}</v-list-item-subtitle>
+            <v-tooltip bottom content-class="sidebarLogoutTooltip">
+              <template v-slot:activator="{ on, attrs }">
+                <v-list-item-subtitle v-bind="attrs" v-on="on">{{
+                  getNotificationTime(notification.time)
+                }}</v-list-item-subtitle>
+              </template>
+              <span>{{ getExactNotificationTime(notification.time) }}</span>
+            </v-tooltip>
           </v-list-item-content>
         </v-list-item>
         <v-divider
@@ -62,7 +69,7 @@
 
 <script>
 import { mapState } from 'vuex'
-
+import * as moment from 'moment'
 export default {
   name: 'NotificationPanel',
   data() {
@@ -77,6 +84,22 @@ export default {
   methods: {
     setNotificationPanel(e) {
       this.$store.dispatch('toggleNotificationPanel', e)
+    },
+    getNotificationTime(time) {
+      try {
+        const unix = Math.ceil(parseInt(time) / 1000)
+        return moment.unix(unix).fromNow()
+      } catch (error) {
+        return ''
+      }
+    },
+    getExactNotificationTime(time) {
+      try {
+        const unix = Math.ceil(parseInt(time) / 1000)
+        return moment.unix(unix).format('LLLL')
+      } catch (error) {
+        return ''
+      }
     }
   },
   created() {
