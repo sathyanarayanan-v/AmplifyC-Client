@@ -33,7 +33,7 @@ import LoginForm from '../components/LoginForm.vue'
 export default class AmplifyCLogin extends VueStrong {
   loading = false
   public async handleLogin(userCreds: { username: string; password: string; redirectUri?: string }) {
-    const redirectUri = (this.$router.currentRoute.query['redirectUrl'] as string) || 'home'
+    const redirectUri = (this.$router.currentRoute.query['redirectUrl'] as string) || '/home'
     userCreds.redirectUri = redirectUri
     try {
       this.loading = true

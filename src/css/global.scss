@@ -219,3 +219,7 @@ nav {
 .success-text {
   color: #28a745 !important;
 }
+.client-list-container {
+  max-height: 55vh;
+  overflow-x: auto;
+}

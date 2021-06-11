@@ -5,6 +5,7 @@ export interface ICommit {
 }
 
 export interface INotification {
+  id: string
   group: string
   title: string
   text: string

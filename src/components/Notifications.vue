@@ -14,6 +14,9 @@
               <div class="alert-text">{{ props.item.text }}</div>
             </div>
           </div>
+          <template v-slot:close="{ toggle }">
+            <v-btn color="primary" dark @click="myFunction(toggle, props.item)"> <v-icon>mdi-close</v-icon> </v-btn>
+          </template>
         </v-alert>
       </template>
     </notifications>
@@ -54,7 +57,20 @@ export default class TheNotification extends VueStrong {
 
   @Watch('notifications.0', { deep: true })
   onNewNotification(val: INotification, oldVal: INotification) {
-    this.$notify({ ...val, group: 'notification', duration: 5000 })
+    this.$notify({ ...val, group: 'notification', duration: 3000 })
+    setTimeout(() => {
+      this.$store.dispatch('moveToNotificationTray', val.id)
+    }, 3000)
+  }
+
+  // methods
+  moveNotificationToTray(item: Array<any>) {
+    console.log(item)
+  }
+  myFunction(toggle: () => void, notification: INotification) {
+    console.log(toggle.toString())
+    this.$store.dispatch('moveToNotificationTray', notification.id)
+    toggle()
   }
 }
 </script>
