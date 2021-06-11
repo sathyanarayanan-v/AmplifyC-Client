@@ -1,6 +1,7 @@
 import { ICompany, ICompanyState, INameSearchResult } from '@/interfaces/store/company'
 import { companyApi } from './../../api/modules/company'
 import { ICommit } from './../../interfaces/common.interface'
+import store from '@/store'
 const mutations = {
   setCompaniesForUser(state: ICompanyState, companies: [ICompany]) {
     state.companies = companies
@@ -10,6 +11,9 @@ const mutations = {
   },
   setNameSearchResults(state: ICompanyState, nameSearchResults: INameSearchResult) {
     state.nameSearchResults = nameSearchResults
+  },
+  addCompany(state: ICompanyState, company: ICompany) {
+    state.companies = [...state.companies, company]
   }
 }
 const actions = {
@@ -33,6 +37,24 @@ const actions = {
     try {
       const nameSearchResults = await companyApi.searchCompaniesInMcaByName(name)
       commit('setNameSearchResults', nameSearchResults)
+    } catch (error) {
+      // log error
+    }
+  },
+  async createCompany({ commit }: ICommit, newCompany: Partial<ICompany>) {
+    try {
+      const company = await companyApi.create(newCompany)
+      commit('addCompany', company)
+      commit('setCurrentCompany', company)
+      store.dispatch('createNotification', {
+        group: 'notification',
+        title: 'Your company is successfully created',
+        time: Date.now().toString(),
+        data: {
+          color: 'success',
+          icon: 'mdi-check-decagram'
+        }
+      })
     } catch (error) {
       // log error
     }

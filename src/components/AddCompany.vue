@@ -112,7 +112,7 @@
             <!-- Dummy Col -->
             <v-col cols="0" sm="0" lg="3" xl="3" md="0" xs="0"></v-col>
             <v-col cols="12" sm="12" lg="6" xl="6" md="12" xs="12" class="d-flex justify-center">
-              <v-btn :disabled="!valid" class="bg-success mr-2 text-capitalize"
+              <v-btn :disabled="!valid" :loading="isSubmitting" @click="submit" class="bg-success mr-2 text-capitalize"
                 ><v-icon class="mr-2">mdi-check-decagram</v-icon>Sumbit
               </v-btn>
               <v-btn class="bg-error ml-2 text-capitalize" @click="closeDialog"
@@ -173,6 +173,7 @@ export default class AddCompany extends VueStrong {
   valid = false
   loading = false
   isFetchingCaptcha = false
+  isSubmitting = false
 
   // v-model variables
   company_name = ''
@@ -218,19 +219,29 @@ export default class AddCompany extends VueStrong {
     }
   }
   async submit() {
-    const panSearch = {
-      pan: this.pan,
-      idToken: this.idToken,
-      captcha: this.captcha,
-      incorporation_number: this.incorporation_number
-    }
-    const companyToCreate = {
-      incorporation_number: this.incorporation_number,
-      company_name: this.company_name
-    }
-    const affiliateToCreate = {
-      user_id: this.user._id,
-      company_id: this.selectedCompany._id
+    try {
+      this.isSubmitting = true
+      const panSearch = {
+        pan: this.pan,
+        idToken: this.idToken,
+        captcha: this.captcha,
+        incorporation_number: this.incorporation_number
+      }
+      const companyToCreate = {
+        incorporation_number: this.incorporation_number,
+        company_name: this.company_name
+      }
+      await this.$store.dispatch('createCompany', companyToCreate)
+      const affiliateToCreate = {
+        user_id: this.user._id,
+        company_id: this.selectedCompany._id
+      }
+      await this.$store.dispatch('createAffiliate', affiliateToCreate)
+    } catch (error) {
+      // log error
+    } finally {
+      this.isSubmitting = false
+      this.closeDialog()
     }
   }
 
@@ -242,15 +253,22 @@ export default class AddCompany extends VueStrong {
       try {
         await this.$store.dispatch('searchCompaniesInMca', newValue)
       } catch (err) {
-        console.error('Error while searching for company')
+        // handle error
       }
     }
     this.loading = false
   }
   @Watch('dialog')
-  onDialogChange(newValue: boolean, oldVal: boolean) {
+  async onDialogChange(newValue: boolean, oldVal: boolean) {
     if (newValue !== oldVal && newValue === true) {
-      this.$store.dispatch('getCaptcha')
+      try {
+        const isSuccess = await this.$store.dispatch('getCaptcha')
+        if (!isSuccess) {
+          // this.closeDialog()
+        }
+      } catch (error) {
+        this.closeDialog()
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 export interface ICompany {
-  _id: string
+  _id?: string
   incorporation_number?: string
-  company_name: string
+  company_name?: string
   date_of_incorporation?: Date
   state?: string
   roc?: string
@@ -9,7 +9,7 @@ export interface ICompany {
   sub_category?: string
   class_of_company?: string
   authorized_capital?: number
-  total_contribution: number
+  total_contribution?: number
   paid_capital?: number
   number_of_members?: string
   activity_description?: string
@@ -22,9 +22,9 @@ export interface ICompany {
   efiling_status?: string
   director_det?: Array<any>
   signatory_det?: Array<any>
-  created_by: any
+  created_by?: any
   type?: string
-  createdByModel: string
+  createdByModel?: string
 }
 
 export interface INameSearchResult {

@@ -40,7 +40,7 @@
 
     <v-list three-line>
       <template v-for="(notification, idx) in notifications">
-        <v-list-item :key="idx">
+        <v-list-item :key="notification.time">
           <v-list-item-avatar>
             <v-icon color="success">mdi-check-decagram</v-icon>
           </v-list-item-avatar>
@@ -80,7 +80,7 @@ export default {
     }
   },
   created() {
-    console.log(this.notificationPanel)
+    // console.log(this.notificationPanel)
   }
 }
 </script>

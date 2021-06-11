@@ -3,13 +3,16 @@ import store from '@/store'
 
 export const AuthGuard: NavigationGuard = async (to: Route, from: Route, next: NavigationGuardNext) => {
   const token = localStorage.getItem('token')
+  console.log(from, 'from')
+  console.log(to, 'to')
   if (!token) {
-    next({ name: 'amplifyc-my-account-login' })
+    next({ name: 'amplifyc-my-account-login', query: { redirectUrl: to.fullPath } })
+    return
   }
   try {
     await store.dispatch('getCurrentUser')
     next()
   } catch (error) {
-    error
+    next()
   }
 }

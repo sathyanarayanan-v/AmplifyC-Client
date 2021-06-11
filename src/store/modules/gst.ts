@@ -16,9 +16,10 @@ const actions = {
       const userId = '/' + (rootState.state as IRootState).auth.currentUser._id + '/'
       const image = gstCaptcha.image.replace(userId, '')
       commit('setCaptcha', { image, idToken: gstCaptcha.idToken })
+      return true // AddCompany.vue line 245 this is used
     } catch (error) {
       console.log(error)
-      // log error
+      return false // AddCompany.vue line 245 this is used
     }
   }
 }

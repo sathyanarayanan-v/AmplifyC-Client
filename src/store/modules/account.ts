@@ -6,8 +6,8 @@ import axiosInstance from '@/api/axios'
 import { IUser } from '@/interfaces/store/user'
 import router from '@/router'
 import store from '@/store'
-function loginSuccess() {
-  router.push({ name: 'amplifyc-companies' })
+function loginSuccess(redirectUri: string) {
+  router.push(redirectUri)
   store.dispatch('createNotification', {
     group: 'notification',
     title: 'You have successfully logged in',
@@ -37,7 +37,7 @@ const actions = {
       const { username } = loginResponse
       localStorage.setItem('token', loginResponse.token)
       commit('setCurrentUser', { username })
-      loginSuccess()
+      loginSuccess(loginDto.redirectUri)
     } catch (error) {
       return error
     }
