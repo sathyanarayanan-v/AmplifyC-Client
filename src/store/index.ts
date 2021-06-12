@@ -6,6 +6,7 @@ import CompanyModule from './modules/company'
 import UIModule from './modules/ui'
 import GSTModule from './modules/gst'
 import AffiliateModule from './modules/affiliate'
+import ToolsModule from './modules/tools'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     ui: UIModule,
     notification: NotificationModule,
     gst: GSTModule,
-    affiliate: AffiliateModule
+    affiliate: AffiliateModule,
+    tools: ToolsModule
   }
 })

@@ -40,9 +40,9 @@
         </v-col>
         <v-col lg="6" xl="6"></v-col>
       </v-row>
-      <mca-tools-result v-if="false" />
-      <mca-tools-result-loader :value="loaderValue" />
-      <tools-awaiting-input v-if="false" />
+      <mca-tools-result v-if="resultsLoaded && !isSubmitting" />
+      <mca-tools-result-loader :value="loaderValue" v-if="isSubmitting && !resultsLoaded" />
+      <tools-awaiting-input v-if="!(resultsLoaded && isSubmitting) && initialised" />
     </v-form>
   </v-container>
 </template>
@@ -72,26 +72,45 @@ export default class MCATool extends VueStrong {
   loading = false
   resultsLoaded = false
   loaderValue = 0
+  initialised = true
   // Auto-complete vatiables
-  company_name = ''
-  incorporation_number = ''
+  companyName = ''
+  incorporationNumber = ''
   search = ''
   company: { companyName: string; companyID: string } = null
 
   // Methods
   change(companyNameWithCin: string) {
-    this.company_name = companyNameWithCin.split(' — ')[0]
-    this.incorporation_number = companyNameWithCin.split(' — ')[1]
+    this.companyName = companyNameWithCin.split(' — ')[0]
+    this.incorporationNumber = companyNameWithCin.split(' — ')[1]
   }
   getCompanyName(company: { companyName: string; companyID: string }) {
     return company.companyName + ' — ' + company.companyID
   }
-  submit() {
-    this.isSubmitting = true
-    alert(this.company_name)
-    alert(this.incorporation_number)
-    this.resultsLoaded = true
-    this.isSubmitting = false
+  async submit() {
+    try {
+      const incorporationNumber = this.incorporationNumber
+
+      // Initialise all variables to show loader
+      this.loaderValue = 0
+      this.isSubmitting = true
+      this.resultsLoaded = false
+      this.initialised = false
+
+      await this.$store.dispatch('getMcaMasterData', incorporationNumber)
+      this.loaderValue = 50
+
+      await this.$store.dispatch('getMcaFilings', incorporationNumber)
+      this.loaderValue = 100
+    } catch (error) {
+      console.log(error)
+    } finally {
+      // Alter variables to show results
+      setTimeout(() => {
+        this.resultsLoaded = true
+        this.isSubmitting = false
+      }, 1000)
+    }
   }
 
   // Watch Variables
