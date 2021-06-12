@@ -176,12 +176,12 @@ export default class AddCompany extends VueStrong {
   isSubmitting = false
 
   // v-model variables
-  company_name = ''
-  incorporation_number = ''
   captcha = ''
   pan = ''
 
   // Auto-complete vatiables
+  company_name = ''
+  incorporation_number = ''
   search = ''
   company: { companyName: string; companyID: string } = null
 

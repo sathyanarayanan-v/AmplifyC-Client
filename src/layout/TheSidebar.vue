@@ -91,7 +91,7 @@ export default {
         {
           title: 'Tools',
           icon: 'mdi-tools',
-          target: { name: 'amplifyc-my-account' }
+          target: { name: 'amplifyc-my-tools' }
         }
       ],
 

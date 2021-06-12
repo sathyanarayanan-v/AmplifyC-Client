@@ -162,9 +162,7 @@
   color: #ffffff !important;
   box-shadow: 0 14px 26px -12px rgb(0 0 0 / 10%), 0 4px 23px 0 rgb(0 0 0 / 10%), 0 8px 10px -5px rgb(0 0 0 / 10%);
 }
-.v-progress-circular__underlay {
-  stroke: ghostwhite !important;
-}
+
 .company-search {
   height: 30px !important;
   max-width: 15%;
@@ -222,4 +220,35 @@ nav {
 .client-list-container {
   max-height: 55vh;
   overflow-x: auto;
+}
+.left {
+  width: 50%;
+  height: 4px;
+  border-radius: 12px 0px 0px 12px;
+  background-color: #1c61a1;
+}
+.right {
+  width: 50%;
+  height: 4px;
+  border-radius: 0px 12 px 12px 0px;
+  background-color: #1c61a1;
+}
+.left.active,
+.right.active {
+  background-color: #e1eaf9;
+}
+.tools-progress-container {
+  width: 40%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.v-input__slot {
+  border-radius: 8px !important;
+}
+.mca-details-container {
+  max-height: 60vh;
+  overflow: auto;
+}
+.width-50 {
+  width: 50%;
 }

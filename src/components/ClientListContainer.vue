@@ -1,7 +1,7 @@
 <template>
   <v-row class="mt-4">
     <client-list-header />
-    <v-row class=" client-list-container mt-2">
+    <v-row class=" client-list-container mt-2 pl-4">
       <client-list v-for="(company, idx) in companies" :key="idx" :company="company" />
     </v-row>
   </v-row>

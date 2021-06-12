@@ -1,3 +1,8 @@
+<!--
+Todo: Should move this component to Views folder
+
+-->
+
 <template>
   <v-row class="mt-4 px-3">
     <current-company-header :company="selectedCompany" :companyName="getCompanyName" />

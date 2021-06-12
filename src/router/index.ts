@@ -11,6 +11,7 @@ import AmplifyCMyCompany from '@/views/Companies.vue'
 import AmplifyCAppLayout from '@/layout/TheAppLayout.vue'
 import AmplifyCClientListContainer from '@/components/ClientListContainer.vue'
 import AmplifyCCurrentCompany from '@/components/CurrentCompany.vue'
+import AmplifyCTools from '@/views/Tools.vue'
 import { AuthGuard } from './authGuard'
 
 Vue.use(VueRouter)
@@ -78,6 +79,11 @@ const routes: Array<RouteConfig> = [
             path: 'companies/:id/compliance',
             component: AmplifyCCurrentCompany,
             name: 'amplifyc-my-company'
+          },
+          {
+            path: 'tools',
+            name: 'amplifyc-my-tools',
+            component: AmplifyCTools
           }
         ]
       }
