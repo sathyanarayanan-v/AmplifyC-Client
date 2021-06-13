@@ -29,7 +29,7 @@
       <v-list-item-action>
         <v-tooltip bottom content-class="sidebarLogoutTooltip">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" v-on="on" icon @click="$router.push({ name: 'amplifyc-my-account-login' })">
+            <v-btn v-bind="attrs" v-on="on" icon @click="logout">
               <v-icon>mdi-power</v-icon>
             </v-btn>
           </template>
@@ -48,7 +48,6 @@
         class="sidebar mt-2 py-0"
         :to="item.target"
         color="#0252CC"
-        dark
       >
         <v-list-item-icon>
           <v-icon class="" color="#0252CC">{{ item.icon }}</v-icon>
@@ -110,6 +109,10 @@ export default {
   methods: {
     setDrawer(e) {
       this.$store.dispatch('toggleDrawer', e)
+    },
+    logout() {
+      localStorage.removeItem('token')
+      this.$router.push({ name: 'amplifyc-my-account-login' })
     }
   }
 }

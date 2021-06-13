@@ -24,9 +24,23 @@
               </v-btn>
             </template>
 
-            <v-list>
-              <v-list-item v-for="(item, i) in items" :key="i">
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list dense>
+              <v-list-item v-for="(item, i) in items" @click="$router.push(item.link)" :key="i">
+                <v-list-item-icon>
+                  <v-icon v-text="item.icon" color="#0252cc"></v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title v-text="item.text" class="primary-text"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider></v-divider>
+              <v-list-item @click="logout">
+                <v-list-item-icon>
+                  <v-icon color="#de3e44">mdi-power</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title class="error-text">Logout</v-list-item-title>
+                </v-list-item-content>
               </v-list-item>
             </v-list>
           </v-menu>
@@ -42,13 +56,34 @@ import { VueStrong } from '../typedVue'
 
 @Component
 export default class TheToolBar extends VueStrong {
-  items = [{ title: 'hello' }, { title: 'hello' }, { title: 'hello' }, { title: 'hello' }]
+  items = [
+    {
+      text: 'My Profile',
+      icon: 'mdi-account-circle-outline',
+      link: { name: 'amplifyc-my-account' }
+    },
+    {
+      text: 'Dashboard',
+      icon: 'mdi-home',
+      link: { name: 'amplifyc-companies' }
+    },
+    {
+      text: 'Tools',
+      icon: 'mdi-tools',
+      link: { name: 'amplifyc-my-tools' }
+    }
+  ]
+  selectedItem = 1
   permanent = { xs: true, sm: true, md: false, lg: false, xl: false }
   toggleDrawer() {
     this.$store.dispatch('toggleDrawer', true)
   }
   toggleNotificationPanel() {
     this.$store.dispatch('toggleNotificationPanel', true)
+  }
+  logout() {
+    localStorage.removeItem('token')
+    this.$router.push({ name: 'amplifyc-my-account-login' })
   }
 }
 </script>

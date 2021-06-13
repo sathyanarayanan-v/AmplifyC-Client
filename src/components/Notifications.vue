@@ -15,7 +15,9 @@
             </div>
           </div>
           <template v-slot:close="{ toggle }">
-            <v-btn color="primary" dark @click="myFunction(toggle, props.item)"> <v-icon>mdi-close</v-icon> </v-btn>
+            <v-btn icon @click="myFunction(toggle, props.item)">
+              <v-icon :color="props.item.data.color">mdi-close-circle</v-icon>
+            </v-btn>
           </template>
         </v-alert>
       </template>

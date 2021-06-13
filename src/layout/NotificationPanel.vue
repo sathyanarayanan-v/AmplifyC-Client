@@ -59,7 +59,7 @@
             <v-tooltip bottom content-class="sidebarLogoutTooltip">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn icon v-bind="attrs" v-on="on" @click="readNotification(notification.id)">
-                  <v-icon color="grey lighten-1">mdi-close-circle-outline</v-icon>
+                  <v-icon :color="notification.data.color">mdi-close-circle-outline</v-icon>
                 </v-btn>
               </template>
               <span>Close</span>
