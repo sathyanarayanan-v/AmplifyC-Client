@@ -4,15 +4,13 @@
       <v-col class="align-self-center hidden-sm-and-down">
         <v-container
           ><v-img height="320" width="300" class="mx-auto" src="../assets/logo.png"></v-img>
-          <h2 class="text-center">
-            Boost your clients and increase your revenue!
-          </h2></v-container
+          <h2 class="text-center">Boost your clients and increase your revenue!</h2></v-container
         >
       </v-col>
       <v-col>
         <v-card height="100%" class="pa-4 edge-12">
-          <v-card-text style="height:100%" class="d-flex justify-space-between flex-column">
-            <p class="font-weight-bold text-center" color="#000">
+          <v-card-text style="height: 100%" class="d-flex justify-space-between flex-column">
+            <p class="font-weight-bold text-center primary-text">
               Verification code will be sent to registered email address
             </p>
             <div class="text-fields my-auto">
@@ -25,12 +23,15 @@
                   v-model="email"
                   class="mb-4"
                 ></v-text-field>
+                <v-btn @click.prevent="goBack" class="bg-error mr-2 text-capitalize">
+                  <h4>Cancel</h4>
+                  <v-icon class="ml-2">mdi-close-circle</v-icon>
+                </v-btn>
                 <v-btn
                   :disabled="!valid"
                   @click.prevent="sendVerificationCode"
                   type="submit"
-                  color="success"
-                  class="text-capitalize mr-3"
+                  class="bg-success text-capitalize mr-3"
                   :loading="loading"
                 >
                   <h4>Send Code</h4>
@@ -69,6 +70,9 @@ export default class ForgotPasswordCodeGen extends VueStrong {
     } catch (error) {
       this.loading = false
     }
+  }
+  goBack() {
+    this.$router.push({ name: 'amplifyc-my-account-login' })
   }
 }
 </script>

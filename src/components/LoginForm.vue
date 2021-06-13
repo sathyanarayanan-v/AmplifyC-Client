@@ -1,10 +1,10 @@
 <template>
   <v-card height="100%" class="pa-4 edge-12">
-    <v-card-text style="height:100%" class="d-flex justify-space-between flex-column">
+    <v-card-text style="height: 100%" class="d-flex justify-space-between flex-column">
       <v-img height="170" width="170" class="mx-auto hidden-md-and-up" src="../assets/logo.png"></v-img>
       <div class="text-fields">
         <v-form v-model="valid">
-          <p class="font-weight-bold text-center" color="#000">Please login with your credentials to continue</p>
+          <p class="font-weight-bold text-center primary-text">Please login with your credentials to continue</p>
           <v-text-field
             autocomplete="off"
             outlined

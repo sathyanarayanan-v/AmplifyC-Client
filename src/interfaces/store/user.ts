@@ -4,4 +4,6 @@ export interface IUser {
   password?: string
   _id?: string
   email: string
+  name: string
 }
+export interface IUserState {}

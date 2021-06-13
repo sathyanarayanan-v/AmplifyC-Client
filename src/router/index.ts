@@ -1,18 +1,26 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import AmplifyCLogin from '../components/Login.vue'
+import { AuthGuard } from './authGuard'
+
+// Layout Imports
+import AmplifyCMainLayout from '@/layout/TheMainLayout.vue'
+import AmplifyCAppLayout from '@/layout/TheAppLayout.vue'
+
+// Account component imports
 import AmplifyCMyAccount from '../views/MyAccount.vue'
+import AmplifyCLogin from '../components/Login.vue'
 import AmplifyCForgotPasswordCodeGen from '../components/ForgotPasswordCodeGen.vue'
 import AmplifyCValidateForgotPasswordCode from '../components/ValidateForgotPasswordCode.vue'
 import AmplifyCResetPassword from '../components/ResetPassword.vue'
 import AmplifyCCreateAccount from '../components/CreateAccount.vue'
-import AmplifyCMainLayout from '@/layout/TheMainLayout.vue'
+
+// Company Related component Imports
 import AmplifyCMyCompany from '@/views/Companies.vue'
-import AmplifyCAppLayout from '@/layout/TheAppLayout.vue'
 import AmplifyCClientListContainer from '@/components/ClientListContainer.vue'
 import AmplifyCCurrentCompany from '@/components/CurrentCompany.vue'
+
+// Tools component importw
 import AmplifyCTools from '@/views/Tools.vue'
-import { AuthGuard } from './authGuard'
 
 Vue.use(VueRouter)
 
@@ -48,9 +56,8 @@ const routes: Array<RouteConfig> = [
             name: 'amplifyc-my-account-forgot-password-reset-password'
           },
           {
-            path: 'new',
+            path: 'create',
             component: AmplifyCCreateAccount,
-            beforeEnter: AuthGuard,
             name: 'amplifyc-my-account-new'
           }
         ]

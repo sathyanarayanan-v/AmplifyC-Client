@@ -4,17 +4,13 @@
       <v-col class="align-self-center hidden-sm-and-down">
         <v-container
           ><v-img height="320" width="300" class="mx-auto" src="../assets/logo.png"></v-img>
-          <h2 class="text-center">
-            Boost your clients and increase your revenue!
-          </h2></v-container
+          <h2 class="text-center">Boost your clients and increase your revenue!</h2></v-container
         >
       </v-col>
       <v-col>
         <v-card height="100%" class="pa-4 edge-12">
-          <v-card-text style="height:100%" class="d-flex justify-space-between flex-column">
-            <p class="font-weight-bold text-center" color="#000">
-              Please enter your new password
-            </p>
+          <v-card-text style="height: 100%" class="d-flex justify-space-between flex-column">
+            <p class="font-weight-bold text-center primary-text">Please enter your new password</p>
             <div class="text-fields my-auto">
               <v-form v-model="valid">
                 <v-text-field
@@ -34,7 +30,7 @@
                   label="Confirm password"
                   :type="showPassword ? 'text' : 'password'"
                   :rules="[
-                    value => {
+                    (value) => {
                       if (!value) {
                         return 'Confirm password is required'
                       }
@@ -81,8 +77,8 @@ import { VueStrong } from '../typedVue'
   },
   computed: {
     ...mapState({
-      fpEmail: state => (state as IRootState).auth.fpEmail,
-      fpCode: state => (state as IRootState).auth.fpCode
+      fpEmail: (state) => (state as IRootState).auth.fpEmail,
+      fpCode: (state) => (state as IRootState).auth.fpCode
     })
   }
 })

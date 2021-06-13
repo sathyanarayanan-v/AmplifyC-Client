@@ -87,15 +87,15 @@ import { mapState } from 'vuex'
 import { IRootState } from '../interfaces/store/root'
 import { VueStrong } from '../typedVue'
 import { MCAFilings } from '../interfaces/store/tools'
-import * as moment from 'moment'
+import moment from 'moment'
 @Component<MCAToolsResult>({
   computed: {
     ...mapState({
-      masterData: state => (state as IRootState).tools.mca.masterData,
-      filings: state => (state as IRootState).tools.mca.filings,
-      charges: state =>
+      masterData: (state) => (state as IRootState).tools.mca.masterData,
+      filings: (state) => (state as IRootState).tools.mca.filings,
+      charges: (state) =>
         (state as IRootState).tools.mca.masterData && (state as IRootState).tools.mca.masterData.charges,
-      directors: state =>
+      directors: (state) =>
         (state as IRootState).tools.mca.masterData && (state as IRootState).tools.mca.masterData.directors
     })
   }

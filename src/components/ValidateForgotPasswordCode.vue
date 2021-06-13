@@ -4,15 +4,13 @@
       <v-col class="align-self-center hidden-sm-and-down">
         <v-container
           ><v-img height="320" width="300" class="mx-auto" src="../assets/logo.png"></v-img>
-          <h2 class="text-center">
-            Boost your clients and increase your revenue!
-          </h2></v-container
+          <h2 class="text-center">Boost your clients and increase your revenue!</h2></v-container
         >
       </v-col>
       <v-col>
         <v-card height="100%" class="pa-4 edge-12">
-          <v-card-text style="height:100%" class="d-flex justify-space-between flex-column">
-            <p class="font-weight-bold text-center" color="#000">
+          <v-card-text style="height: 100%" class="d-flex justify-space-between flex-column">
+            <p class="font-weight-bold text-center primary-text">
               Please enter the verification code sent to your mail address
             </p>
             <div class="text-fields my-auto">
@@ -59,7 +57,7 @@ import { VueStrong } from '../typedVue'
 
   computed: {
     ...mapState({
-      fpEmail: state => (state as IRootState).auth.fpEmail
+      fpEmail: (state) => (state as IRootState).auth.fpEmail
     })
   }
 })

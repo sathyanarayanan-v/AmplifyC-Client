@@ -1,5 +1,6 @@
 <template
-  ><v-row>
+  >
+  <v-row>
     <v-col lg="9" cols="12">
       <v-card class="pull-up bg-lightBlue" width="100%">
         <v-row>
@@ -7,7 +8,7 @@
             <v-img src="../assets/welcome_image.svg" height="100" width="100%" contain> </v-img>
           </v-col>
           <v-col lg="9" md="9" sm="9" xl="9" cols="12" class="pb-0 ma-auto">
-            <h2 class="font-weight-black primary-text pa-2">Hello Sathya, Welcome back!</h2>
+            <h2 class="font-weight-black primary-text pa-2">Hello {{ user.name }}, Welcome back!</h2>
             <p class="mt-2 ml-1 pa-2" v-html="quotes[randomNumber]"></p>
           </v-col>
         </v-row>
@@ -24,13 +25,16 @@
           </v-col>
         </v-row>
       </v-card>
-    </v-col> </v-row
-></template>
+    </v-col>
+  </v-row>
+</template>
 
 <script lang="ts">
 import { Component } from 'vue-property-decorator'
 import { VueStrong } from '../typedVue'
 import AddCompany from '../components/AddCompany.vue'
+import { mapState } from 'vuex'
+import { IRootState } from '../interfaces/store/root'
 @Component<DashboardWelcome>({
   components: {
     'add-company': AddCompany
@@ -38,7 +42,10 @@ import AddCompany from '../components/AddCompany.vue'
   computed: {
     randomNumber() {
       return Math.floor(Math.random() * 8) + 1
-    }
+    },
+    ...mapState({
+      user: (state) => (state as IRootState).auth.currentUser
+    })
   }
 })
 export default class DashboardWelcome extends VueStrong {
