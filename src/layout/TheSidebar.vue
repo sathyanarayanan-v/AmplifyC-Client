@@ -4,8 +4,9 @@
     @input="setDrawer"
     class="color"
     :width="300"
-    elevation="2"
+    elevation="4"
     app
+    clipped
     :permanent="permanent[$vuetify.breakpoint.name]"
     :mini-variant.sync="mini"
     mini-variant-width="75"
@@ -42,8 +43,8 @@
 
     <v-list nav>
       <v-list-item
-        v-for="item in items"
-        :key="item.title"
+        v-for="(item, idx) in items"
+        :key="idx"
         link
         class="sidebar mt-2 py-0"
         :to="item.target"
@@ -59,6 +60,28 @@
           >
         </v-list-item-content>
       </v-list-item>
+      <v-list-group no-action>
+        <template v-slot:activator>
+          <v-list-item-icon>
+            <v-icon class="" color="#0252CC">mdi-account-tie</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title style="color:#0252CC !important" class="ml-11"><h5>Profile</h5></v-list-item-title>
+          </v-list-item-content>
+        </template>
+
+        <v-list-item v-for="item in profileMenu" :key="item.title" link :to="item.target" class="px-6">
+          <v-list-item-icon>
+            <v-icon class="" color="#0252CC">{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title style="color:#0252CC !important" class="ml-11"
+              ><h5>{{ item.title }}</h5></v-list-item-title
+            >
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-group>
     </v-list>
     <template v-slot:append>
       <div class="pa-2" v-if="!mini" style="bottom:0px">
@@ -84,7 +107,7 @@ export default {
       items: [
         {
           title: 'Dashboard',
-          icon: 'mdi-home',
+          icon: 'mdi-view-dashboard',
           target: { name: 'amplifyc-companies' }
         },
         {
@@ -92,8 +115,25 @@ export default {
           icon: 'mdi-tools',
           target: { name: 'amplifyc-my-tools' }
         }
+        // ,
+        // {
+        //   title: 'My Profile',
+        //   icon: 'mdi-account-tie',
+        //   target: { name: 'amplifyc-my-profile' }
+        // }
       ],
-
+      profileMenu: [
+        {
+          title: 'Edit',
+          icon: 'mdi-account-edit',
+          target: { name: 'amplifyc-edit-my-profile' }
+        },
+        {
+          title: 'Change password',
+          icon: 'mdi-account-key',
+          target: { name: 'amplifyc-companies' }
+        }
+      ],
       mini: true,
       permanent: { xs: false, sm: false, md: true, lg: true, xl: true }
     }

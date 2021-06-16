@@ -1,5 +1,4 @@
-<template
-  >
+<template>
   <v-row>
     <v-col lg="9" cols="12">
       <v-card class="pull-up bg-lightBlue" width="100%">
@@ -15,7 +14,7 @@
       </v-card>
     </v-col>
     <v-col lg="3" cols="12" class="my-auto">
-      <v-card width="100%" class="bg-website" elevation="0">
+      <v-card width="100%" class="" elevation="0">
         <v-row>
           <v-col lg="12" md="6" sm="6" xl="12" cols="12" class="pb-0 ma-auto">
             <h3 class="font-weight-black primary-text mb-4 text-center">You have new Clients? Add them!</h3>
@@ -44,7 +43,7 @@ import { IRootState } from '../interfaces/store/root'
       return Math.floor(Math.random() * 8) + 1
     },
     ...mapState({
-      user: (state) => (state as IRootState).auth.currentUser
+      user: state => (state as IRootState).auth.currentUser
     })
   }
 })

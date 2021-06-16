@@ -1,6 +1,9 @@
 <template>
   <v-col xl="3" lg="4" md="6" cols="12">
-    <v-card @click="$router.push({ name: 'amplifyc-my-company', params: { id: company._id } })" class=" pull-up">
+    <v-card
+      @click="$router.push({ name: 'amplifyc-my-company', params: { id: company._id } })"
+      class="client-list pull-up"
+    >
       <v-container class="pa-5 pr-4">
         <v-row>
           <v-col sm="8" md="8" lg="8" xl="8">
@@ -27,7 +30,9 @@
               </div>
             </div>
             <p class="mt-7 primary-text font-weight-bold" style="height:48px !important">{{ getCompanyName }}</p>
-            <p class="mb-0 mt-2">Date of Inc : 22/05/2021</p>
+            <p class="mb-0 mt-2">
+              Date of Inc : <strong>{{ date_of_incorporation }}</strong>
+            </p>
           </v-col>
           <v-col sm="4" md="4" lg="4" xl="4" class="flex-column d-flex justify-center">
             <v-row class="mt-2">
@@ -58,8 +63,14 @@
 import { Component, Prop } from 'vue-property-decorator'
 import { ICompany } from '../interfaces/store/company'
 import { VueStrong } from '../typedVue'
-
-@Component<ClientList>({})
+import moment from 'moment'
+@Component<ClientList>({
+  computed: {
+    date_of_incorporation() {
+      return moment(this.company.date_of_incorporation).format('DD - MMM - YY')
+    }
+  }
+})
 export default class ClientList extends VueStrong {
   @Prop({ required: true, type: Object, default: () => ({}) }) company?: ICompany
   get getCompanyName(): string {

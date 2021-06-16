@@ -1,6 +1,6 @@
 <template>
-  <v-card class="pull-up ">
-    <v-card-title style="height:96px" class="justify-center bg-lightBlue justify-space-between"
+  <v-card class="pull-up client-list">
+    <v-card-title style="height:96px" class="justify-center bg-lightBlue  justify-space-between"
       ><h5 class="primary-text text-center">
         <v-icon color="#0252cc" class="mr-2 mb-1">{{ currentCompliance.icon }}</v-icon
         >{{ currentCompliance.name }}

@@ -5,12 +5,7 @@
       <h5 class="primary-text mb-2">
         <v-icon color="#0252cc" class="mr-2 mb-1">mdi-database-check</v-icon>Company Master Data - 1
       </h5>
-      <v-data-table
-        class="elevation-2"
-        :headers="master_data_headers"
-        :hide-default-footer="true"
-        :items="[masterData]"
-      >
+      <v-data-table class="elevation-2" :headers="masterDataHeaders.header1" :items="[masterData]">
         <template v-slot:[`item.date_of_agm`]="{ item }">
           <span v-if="item.date_of_agm">{{ getFormattedDate(item.date_of_agm) }}</span>
           <span v-else>-</span>
@@ -35,12 +30,7 @@
       <h5 class="primary-text mb-2">
         <v-icon color="#0252cc" class="mr-2 mb-1">mdi-database-check</v-icon>Company Master Data - 2
       </h5>
-      <v-data-table
-        :hide-default-footer="true"
-        class="elevation-2"
-        :headers="master_data_headers_2"
-        :items="[masterData]"
-      >
+      <v-data-table class="elevation-2" :headers="masterDataHeaders.header2" :items="[masterData]">
         <template v-slot:[`item.paid_capital`]="{ item }">
           <span v-if="item.paid_capital">{{ getCurrency(item.paid_capital) }}</span>
           <span v-else>-</span>
@@ -61,12 +51,7 @@
       <h5 class="primary-text mb-2">
         <v-icon color="#0252cc" class="mr-2 mb-1">mdi-cash-remove</v-icon>Charge Details
       </h5>
-      <v-data-table
-        class="elevation-2"
-        :headers="charges_header"
-        :hide-default-footer="true"
-        :items="[charges]"
-      ></v-data-table>
+      <v-data-table class="elevation-2" :headers="charges_header" :items="charges"></v-data-table>
     </v-col>
 
     <!-- Filings  -->
@@ -91,13 +76,38 @@ import moment from 'moment'
 @Component<MCAToolsResult>({
   computed: {
     ...mapState({
-      masterData: (state) => (state as IRootState).tools.mca.masterData,
-      filings: (state) => (state as IRootState).tools.mca.filings,
-      charges: (state) =>
+      masterData: state => (state as IRootState).tools.mca.masterData,
+      filings: state => (state as IRootState).tools.mca.filings,
+      charges: state =>
         (state as IRootState).tools.mca.masterData && (state as IRootState).tools.mca.masterData.charges,
-      directors: (state) =>
+      directors: state =>
         (state as IRootState).tools.mca.masterData && (state as IRootState).tools.mca.masterData.directors
-    })
+    }),
+    masterDataHeaders() {
+      try {
+        const headers = Object.keys(this.masterData).filter(header => header !== 'charges' && header !== 'directors')
+        return {
+          header1: headers.slice(0, headers.length / 2 + 1).map(header => ({
+            text: header
+              .split('_')
+              .map(x => x.charAt(0).toUpperCase() + x.slice(1))
+              .join(' '),
+            sortable: false,
+            value: header
+          })),
+          header2: headers.slice(headers.length / 2 + 1, headers.length).map(header => ({
+            text: header
+              .split('_')
+              .map(x => x.charAt(0).toUpperCase() + x.slice(1))
+              .join(' '),
+            sortable: false,
+            value: header
+          }))
+        }
+      } catch (error) {
+        return []
+      }
+    }
   }
 })
 export default class MCAToolsResult extends VueStrong {
@@ -126,10 +136,10 @@ export default class MCAToolsResult extends VueStrong {
   ]
 
   director_details_header = [
-    { text: 'DIN/PAN', value: 'din/pan', align: 'center', sortable: false },
-    { text: 'Name', value: 'name', align: 'center', sortable: false },
-    { text: 'Begin Date', value: 'begin_date', align: 'center', sortable: false },
-    { text: 'End Date', value: 'end_date', align: 'center', sortable: false }
+    { text: 'DIN/PAN', value: 'din/pan', align: 'center', sortable: true },
+    { text: 'Name', value: 'name', align: 'center', sortable: true },
+    { text: 'Begin Date', value: 'begin_date', align: 'center', sortable: true },
+    { text: 'End Date', value: 'end_date', align: 'center', sortable: true }
   ]
 
   charges_header = [
@@ -170,7 +180,7 @@ export default class MCAToolsResult extends VueStrong {
   }
 
   getFormattedDate(date: string) {
-    return moment(date, 'DD/MM/YYYY').format('DD-MMM-YY')
+    return date !== '-' ? moment(date, 'DD/MM/YYYY').format('DD-MMM-YY') : '-'
   }
   getCurrency(currency: string) {
     const amount = parseInt(currency)

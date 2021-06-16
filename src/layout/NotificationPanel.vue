@@ -17,7 +17,7 @@
         <v-tooltip bottom content-class="sidebarLogoutTooltip">
           <template v-slot:activator="{ on, attrs }">
             <v-btn @click="readAllNotification" v-bind="attrs" v-on="on" icon>
-              <v-icon>mdi-bell-check-outline</v-icon>
+              <v-icon color="#0252cc">mdi-bell-check-outline</v-icon>
             </v-btn>
           </template>
           <span>Mark all as read</span>

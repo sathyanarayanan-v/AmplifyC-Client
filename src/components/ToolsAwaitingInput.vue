@@ -1,7 +1,7 @@
 <template>
   <v-row class="mt-13">
     <v-col cols="12">
-      <v-img src="../assets/welcome_image.svg" contain max-width="200" max-height="200" class="mx-auto"></v-img>
+      <v-img src="../assets/achievement.svg" contain max-width="200" max-height="200" class="mx-auto"></v-img>
     </v-col>
     <v-col cols="12" class="my-auto">
       <h3 class="my-auto text-center primary-text">Master data and Filings of MCA</h3>

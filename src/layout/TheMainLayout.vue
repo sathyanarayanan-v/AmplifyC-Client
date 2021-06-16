@@ -1,6 +1,6 @@
 <template>
-  <v-app style="background-color:#F8F9FB">
-    <v-main class="mt-4" style="background-color:#F8F9FB">
+  <v-app style="background-color:#fff">
+    <v-main class="mt-4" style="background-color:#fff">
       <v-row class="my-2" no-gutters>
         <v-col>
           <v-row align="start" justify="start">

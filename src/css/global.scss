@@ -1,5 +1,5 @@
 * {
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: sans-serif;
   user-select: none;
   scrollbar-color: white white !important;
 }
@@ -75,16 +75,28 @@
   justify-content: space-between;
   margin: auto;
   width: 100%;
-  > button {
+  .v-badge__wrapper {
+    flex: 0 1;
+    height: 100%;
+    left: -9px;
+    pointer-events: none;
+    position: absolute;
+    top: 7px;
+    width: 87%;
+  }
+  > button,
+  .v-badge > button {
     background-color: #fff !important;
+    margin: 0px 8px 0px 8px;
     min-width: 45px !important;
-    width: 52px !important;
-    border-radius: 52px !important;
+    width: 45px !important;
+    border-radius: 45px !important;
     height: 45px !important;
     box-shadow: none;
     padding: 0 12px !important;
     span > i {
       font-size: 28px !important;
+      color: #000 !important;
       &:hover {
         color: #0252cc !important;
       }
@@ -254,4 +266,7 @@ nav {
 }
 .error-text {
   color: #de3e44 !important;
+}
+.client-list {
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
 }

@@ -1,12 +1,12 @@
 <template>
-  <v-tabs right background-color="#f8f9fb" class="text-primary">
+  <v-tabs right background-color="#fff" class="text-primary">
     <v-tab v-for="(item, idx) in toolsTab" :key="idx" class="text-capitalize">
       <div class="d-flex">
         <v-icon class="mr-2">{{ item.icon }}</v-icon>
         <span class="my-auto">{{ item.name }}</span>
       </div>
     </v-tab>
-    <v-tab-item class="bg-lightWHite" style="height:100%">
+    <v-tab-item style="height:100%">
       <!-- MCA Tool -->
       <mca-tool />
     </v-tab-item>

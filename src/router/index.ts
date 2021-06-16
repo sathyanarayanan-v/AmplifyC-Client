@@ -14,6 +14,10 @@ import AmplifyCValidateForgotPasswordCode from '../components/ValidateForgotPass
 import AmplifyCResetPassword from '../components/ResetPassword.vue'
 import AmplifyCCreateAccount from '../components/CreateAccount.vue'
 
+// Profile related imports
+import AmplifyCProfile from '../views/Profile.vue'
+import AmplifyCEditProfile from '../components/EditProfile.vue'
+
 // Company Related component Imports
 import AmplifyCMyCompany from '@/views/Companies.vue'
 import AmplifyCClientListContainer from '@/components/ClientListContainer.vue'
@@ -38,27 +42,42 @@ const routes: Array<RouteConfig> = [
           {
             path: 'login',
             component: AmplifyCLogin,
-            name: 'amplifyc-my-account-login'
+            name: 'amplifyc-my-account-login',
+            meta: {
+              title: 'Login'
+            }
           },
           {
             path: 'forgot-password',
             component: AmplifyCForgotPasswordCodeGen,
-            name: 'amplifyc-my-account-forgot-password-code-gen'
+            name: 'amplifyc-my-account-forgot-password-code-gen',
+            meta: {
+              title: 'Forgot Password'
+            }
           },
           {
             path: 'forgot-password/verify-code',
             component: AmplifyCValidateForgotPasswordCode,
-            name: 'amplifyc-my-account-forgot-password-validate-code'
+            name: 'amplifyc-my-account-forgot-password-validate-code',
+            meta: {
+              title: 'Verify Forgot Password Code'
+            }
           },
           {
             path: 'forgot-password/reset-password',
             component: AmplifyCResetPassword,
-            name: 'amplifyc-my-account-forgot-password-reset-password'
+            name: 'amplifyc-my-account-forgot-password-reset-password',
+            meta: {
+              title: 'Reset Password'
+            }
           },
           {
             path: 'create',
             component: AmplifyCCreateAccount,
-            name: 'amplifyc-my-account-new'
+            name: 'amplifyc-my-account-new',
+            meta: {
+              title: 'Create New Account'
+            }
           }
         ]
       },
@@ -78,19 +97,43 @@ const routes: Array<RouteConfig> = [
               {
                 path: 'dashboard',
                 component: AmplifyCClientListContainer,
-                name: 'amplifyc-companies'
+                name: 'amplifyc-companies',
+                meta: {
+                  title: 'Dashboard'
+                }
               }
             ]
           },
           {
             path: 'companies/:id/compliance',
             component: AmplifyCCurrentCompany,
-            name: 'amplifyc-my-company'
+            name: 'amplifyc-my-company',
+            meta: {
+              title: 'Compliant Details'
+            }
           },
           {
             path: 'tools',
             name: 'amplifyc-my-tools',
-            component: AmplifyCTools
+            component: AmplifyCTools,
+            meta: {
+              title: 'Tools'
+            }
+          },
+          {
+            path: 'profile',
+            component: AmplifyCProfile,
+            name: 'amplifyc-my-profile',
+            children: [
+              {
+                path: 'edit',
+                component: AmplifyCEditProfile,
+                name: 'amplifyc-edit-my-profile',
+                meta: {
+                  title: 'Edit Profile'
+                }
+              }
+            ]
           }
         ]
       }
