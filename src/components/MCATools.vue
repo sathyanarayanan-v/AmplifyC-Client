@@ -102,14 +102,12 @@ export default class MCATool extends VueStrong {
 
       await this.$store.dispatch('getMcaFilings', incorporationNumber)
       this.loaderValue = 100
+      this.resultsLoaded = true
+      this.isSubmitting = false
     } catch (error) {
-      console.log(error)
-    } finally {
-      // Alter variables to show results
-      setTimeout(() => {
-        this.resultsLoaded = true
-        this.isSubmitting = false
-      }, 1000)
+      this.resultsLoaded = false
+      this.isSubmitting = false
+      this.initialised = true
     }
   }
 

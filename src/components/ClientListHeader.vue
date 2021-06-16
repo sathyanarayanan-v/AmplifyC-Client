@@ -1,7 +1,7 @@
 <template>
   <v-col cols="12">
     <div class="d-flex justify-space-between">
-      <h3>Your Clients</h3>
+      <h3 class="ma-auto">Your Clients</h3>
       <v-spacer></v-spacer>
       <v-menu left bottom transition="scale-transition" class="nav-menu " content-class="custom-menu__content">
         <template v-slot:activator="{ on, attrs }">

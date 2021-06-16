@@ -19,7 +19,7 @@ const actions = {
       const masterData = await toolsApi.mca.getMasterData(incorporation_number)
       commit('setCompanyMasterData', masterData)
     } catch (error) {
-      console.log(error)
+      return Promise.reject(error)
     }
   },
   async getMcaFilings({ commit }: ICommit, incorporation_number: string) {
@@ -27,7 +27,7 @@ const actions = {
       const mcaFilings = await toolsApi.mca.getFilings(incorporation_number)
       commit('setMcaFilings', mcaFilings)
     } catch (error) {
-      console.log(error)
+      return Promise.reject(error)
     }
   }
 }
