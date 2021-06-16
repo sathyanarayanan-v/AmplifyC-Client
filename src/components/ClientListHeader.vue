@@ -52,6 +52,8 @@
         clearable
         label="Search"
         append-icon="mdi-magnify"
+        v-model="searchText"
+        @input="search"
       ></v-text-field>
     </div>
   </v-col>
@@ -62,6 +64,7 @@ import { VueStrong } from '../typedVue'
 @Component<ClientListHeader>({})
 export default class ClientListHeader extends VueStrong {
   model = ''
+  searchText = ''
   sortItems = [
     {
       icon: 'mdi-label',
@@ -85,5 +88,8 @@ export default class ClientListHeader extends VueStrong {
       }
     }
   ]
+  search() {
+    this.$store.dispatch('search', this.searchText.toLowerCase())
+  }
 }
 </script>

@@ -25,6 +25,19 @@ const mutations = {
     state.visibleCompanies = [...state.companies].sort(
       (a, b) => new Date(a.date_of_incorporation).getTime() - new Date(b.date_of_incorporation).getTime()
     )
+  },
+  search(state: CompanyState, searchTerm: string) {
+    if (searchTerm) {
+      state.visibleCompanies = state.companies.filter(company => {
+        return (
+          company.company_name.toLowerCase().includes(searchTerm) ||
+          company.incorporation_number.toLowerCase().includes(searchTerm)
+        )
+      })
+      return
+    } else {
+      state.visibleCompanies = state.companies
+    }
   }
 }
 const actions = {
@@ -75,6 +88,9 @@ const actions = {
   },
   sortByName({ commit }: ICommit) {
     commit('sortByName')
+  },
+  search({ commit }: ICommit, searchTerm: string) {
+    commit('search', searchTerm)
   }
 }
 const state: CompanyState = {
