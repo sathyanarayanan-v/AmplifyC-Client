@@ -3,7 +3,7 @@
     <div class="d-flex justify-space-between">
       <h3>Your Clients</h3>
       <v-spacer></v-spacer>
-      <v-menu bottom transition="scale-transition" class="nav-menu " content-class="custom-menu__content">
+      <v-menu left bottom transition="scale-transition" class="nav-menu " content-class="custom-menu__content">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             class="text-capitalize elevation-0 mr-2 hidden-md-and-down bg-primary menu-btn"
@@ -11,14 +11,37 @@
             v-bind="attrs"
             v-on="on"
           >
-            Some text
+            Sort By
             <v-icon small class="ml-2">mdi-arrow-down</v-icon>
           </v-btn>
         </template>
         <v-list>
-          <v-list-item v-for="(item, i) in items" :key="i">
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item>
+          <v-list-item-group v-model="model">
+            <template v-for="(item, i) in sortItems">
+              <v-divider v-if="!item" :key="`divider-${i}`"></v-divider>
+
+              <v-list-item
+                v-else
+                :key="`item-${i}`"
+                :value="item.title"
+                active-class="primary-text text--accent-4"
+                @click="item.action"
+              >
+                <template v-slot:default="{ active }">
+                  <v-list-item-content>
+                    <v-list-item-title>
+                      <v-icon v-text="item.icon" class="mr-2" color="#0252cc"></v-icon>
+                      {{ item.title }}
+                    </v-list-item-title>
+                  </v-list-item-content>
+
+                  <v-list-item-action>
+                    <v-checkbox :input-value="active" color="#0252cc"></v-checkbox>
+                  </v-list-item-action>
+                </template>
+              </v-list-item>
+            </template>
+          </v-list-item-group>
         </v-list>
       </v-menu>
       <v-text-field
@@ -36,8 +59,31 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator'
 import { VueStrong } from '../typedVue'
-@Component
+@Component<ClientListHeader>({})
 export default class ClientListHeader extends VueStrong {
-  items = [{ title: 'hello' }, { title: 'hello' }, { title: 'hello' }, { title: 'hello' }]
+  model = ''
+  sortItems = [
+    {
+      icon: 'mdi-label',
+      title: 'Name',
+      action: () => {
+        this.$store.dispatch('sortByName')
+      }
+    },
+    {
+      icon: 'mdi-calendar-month',
+      title: 'Date of Incorporation',
+      action: () => {
+        this.$store.dispatch('sortByInc')
+      }
+    },
+    {
+      icon: 'mdi-school',
+      title: 'Compliance Score',
+      action: () => {
+        console.log('Score')
+      }
+    }
+  ]
 }
 </script>

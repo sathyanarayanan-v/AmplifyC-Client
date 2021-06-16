@@ -71,7 +71,7 @@ import { Component } from 'vue-property-decorator'
 import { mapState } from 'vuex'
 import { IRootState } from '../interfaces/store/root'
 import { VueStrong } from '../typedVue'
-import { MCAFilings } from '../interfaces/store/tools'
+import { ICompanyMasterDataForTools, MCAFilings } from '../interfaces/store/tools'
 import moment from 'moment'
 @Component<MCAToolsResult>({
   computed: {
@@ -111,6 +111,7 @@ import moment from 'moment'
   }
 })
 export default class MCAToolsResult extends VueStrong {
+  masterData?: ICompanyMasterDataForTools
   master_data_headers = [
     {
       text: 'Authorized Capital',

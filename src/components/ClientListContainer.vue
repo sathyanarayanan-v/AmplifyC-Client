@@ -14,7 +14,7 @@ import ClientList from './ClientList.vue'
 import { mapState } from 'vuex'
 import { IRootState } from '../interfaces/store/root'
 import { IUser } from '../interfaces/store/user'
-import { ICompany } from '../interfaces/store/company'
+import { Company } from '../interfaces/store/company'
 @Component<ClientListContainer>({
   components: {
     'client-list-header': ClientListHeader,
@@ -23,7 +23,7 @@ import { ICompany } from '../interfaces/store/company'
   computed: {
     ...mapState({
       user: state => (state as IRootState).auth.currentUser,
-      companies: state => (state as IRootState).company.companies
+      companies: state => (state as IRootState).company.visibleCompanies
     })
   },
   async created() {
@@ -32,6 +32,6 @@ import { ICompany } from '../interfaces/store/company'
 })
 export default class ClientListContainer extends VueStrong {
   user?: IUser
-  companies?: Array<ICompany>
+  companies?: Array<Company>
 }
 </script>

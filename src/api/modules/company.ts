@@ -1,4 +1,4 @@
-import { ICompany } from '@/interfaces/store/company'
+import { Company } from '@/interfaces/store/company'
 import axiosInstance from '@/api/axios'
 import { USER_ROOT } from './user'
 
@@ -8,5 +8,5 @@ export const companyApi = {
   getCompaniesForUser: (id: string) => axiosInstance.get(`${USER_ROOT}/${id}/companies`),
   findOne: (id: string) => axiosInstance.get(`${COMPANY_ROOT}/${id}`),
   searchCompaniesInMcaByName: (name: string) => axiosInstance.get(`${COMPANY_ROOT}/name-search/${name}`),
-  create: (newCompany: ICompany) => axiosInstance.post(COMPANY_ROOT, newCompany)
+  create: (newCompany: Company) => axiosInstance.post(COMPANY_ROOT, newCompany)
 }

@@ -11,7 +11,7 @@
     :mini-variant.sync="mini"
     mini-variant-width="75"
   >
-    <v-list-item class="py-3">
+    <!-- <v-list-item class="py-3">
       <v-list-item-avatar>
         <v-icon>mdi-account-circle</v-icon>
       </v-list-item-avatar>
@@ -37,9 +37,7 @@
           <span>Logout</span>
         </v-tooltip>
       </v-list-item-action>
-    </v-list-item>
-
-    <v-divider color="#fff"></v-divider>
+    </v-list-item> -->
 
     <v-list nav>
       <v-list-item

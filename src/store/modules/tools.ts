@@ -1,6 +1,6 @@
 import { toolsApi } from './../../api/modules/tools'
 import { ICommit } from '@/interfaces/common.interface'
-import { IToolsState, ICompanyMasterDataForTools, MCAFilings, IMcaFilingsToolsResponse } from '@/interfaces/store/tools'
+import { IToolsState, ICompanyMasterDataForTools, IMcaFilingsToolsResponse } from '@/interfaces/store/tools'
 
 const state: IToolsState = {
   mca: { masterData: null, filings: [] }

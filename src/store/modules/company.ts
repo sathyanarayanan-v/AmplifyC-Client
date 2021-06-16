@@ -1,19 +1,30 @@
-import { ICompany, ICompanyState, INameSearchResult } from '@/interfaces/store/company'
+import { Company, CompanyState, NameSearchResult } from '@/interfaces/store/company'
 import { companyApi } from './../../api/modules/company'
 import { ICommit } from './../../interfaces/common.interface'
 import store from '@/store'
+
 const mutations = {
-  setCompaniesForUser(state: ICompanyState, companies: [ICompany]) {
+  setCompaniesForUser(state: CompanyState, companies: [Company]) {
     state.companies = companies
+    state.visibleCompanies = companies
   },
-  setCurrentCompany(state: ICompanyState, company: ICompany) {
+  setCurrentCompany(state: CompanyState, company: Company) {
     state.selectedCompany = company
   },
-  setNameSearchResults(state: ICompanyState, nameSearchResults: INameSearchResult) {
+  setNameSearchResults(state: CompanyState, nameSearchResults: NameSearchResult) {
     state.nameSearchResults = nameSearchResults
   },
-  addCompany(state: ICompanyState, company: ICompany) {
+  addCompany(state: CompanyState, company: Company) {
     state.companies = [...state.companies, company]
+    state.visibleCompanies = state.companies
+  },
+  sortByName(state: CompanyState) {
+    state.visibleCompanies = [...state.companies].sort((a, b) => a.company_name.localeCompare(b.company_name))
+  },
+  sortByInc(state: CompanyState) {
+    state.visibleCompanies = [...state.companies].sort(
+      (a, b) => new Date(a.date_of_incorporation).getTime() - new Date(b.date_of_incorporation).getTime()
+    )
   }
 }
 const actions = {
@@ -41,7 +52,7 @@ const actions = {
       // log error
     }
   },
-  async createCompany({ commit }: ICommit, newCompany: Partial<ICompany>) {
+  async createCompany({ commit }: ICommit, newCompany: Partial<Company>) {
     try {
       const company = await companyApi.create(newCompany)
       commit('addCompany', company)
@@ -58,10 +69,17 @@ const actions = {
     } catch (error) {
       // log error
     }
+  },
+  sortByInc({ commit }: ICommit) {
+    commit('sortByInc')
+  },
+  sortByName({ commit }: ICommit) {
+    commit('sortByName')
   }
 }
-const state: ICompanyState = {
+const state: CompanyState = {
   companies: [],
+  visibleCompanies: [],
   selectedCompany: null,
   nameSearchResults: {
     errors: [],

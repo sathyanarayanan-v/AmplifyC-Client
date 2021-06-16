@@ -35,12 +35,12 @@
 </template>
 <script lang="ts">
 import { Component, Prop } from 'vue-property-decorator'
-import { ICompany } from '../interfaces/store/company'
+import { Company } from '../interfaces/store/company'
 import { VueStrong } from '../typedVue'
 @Component({})
 export default class CurrentCompanyHeader extends VueStrong {
   @Prop({ required: true, default: () => ({}) })
-  company: ICompany
+  company: Company
   @Prop({ required: true, type: String, default: '' })
   companyName: string
 

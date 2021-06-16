@@ -6,9 +6,9 @@
     >
       <v-container class="pa-5 pr-4">
         <v-row>
-          <v-col sm="8" md="8" lg="8" xl="8">
+          <v-col sm="8" md="8" lg="8" xl="8" class="pr-0">
             <div class="d-flex justify-space-between">
-              <div class="d-flex overflow-x-scroll">
+              <div class="d-flex">
                 <v-btn class="text-capitalize elevation-0 mr-2  menu-btn-inverted" height="24">
                   MCA
                   <v-icon small class="ml-2">
@@ -61,7 +61,7 @@
 
 <script lang="ts">
 import { Component, Prop } from 'vue-property-decorator'
-import { ICompany } from '../interfaces/store/company'
+import { Company } from '../interfaces/store/company'
 import { VueStrong } from '../typedVue'
 import moment from 'moment'
 @Component<ClientList>({
@@ -72,7 +72,7 @@ import moment from 'moment'
   }
 })
 export default class ClientList extends VueStrong {
-  @Prop({ required: true, type: Object, default: () => ({}) }) company?: ICompany
+  @Prop({ required: true, type: Object, default: () => ({}) }) company?: Company
   get getCompanyName(): string {
     const companyName = this.company.company_name.toLowerCase().replace('llp', 'LLP')
     return companyName

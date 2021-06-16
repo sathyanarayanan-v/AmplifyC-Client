@@ -134,7 +134,7 @@ import { mapState } from 'vuex'
 import { IRootState } from '../interfaces/store/root'
 import { validPan } from '../utils'
 import { IUser } from '../interfaces/store/user'
-import { ICompany } from '../interfaces/store/company'
+import { Company } from '../interfaces/store/company'
 @Component<AddCompany>({
   computed: {
     ...mapState({
@@ -166,7 +166,7 @@ export default class AddCompany extends VueStrong {
   image?: string
   idToken?: string
   user?: IUser
-  selectedCompany?: ICompany
+  selectedCompany?: Company
 
   // Data variables
   dialog = false

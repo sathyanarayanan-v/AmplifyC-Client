@@ -1,5 +1,5 @@
 import { IToolsState } from '@/interfaces/store/tools'
-import { ICompanyState } from './company'
+import { CompanyState } from './company'
 import { IAuthState } from './account'
 import { INotificationState } from './notification'
 import { IGstState } from './gst'
@@ -9,7 +9,7 @@ import { IUserState } from './user'
 export interface IRootState {
   auth: IAuthState
   notification: INotificationState
-  company: ICompanyState
+  company: CompanyState
   gst: IGstState
   affiliate: IAffiliateState
   tools: IToolsState

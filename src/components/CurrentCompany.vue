@@ -20,7 +20,7 @@ import CurrentCompanyHeader from './CurrentCompanyHeader.vue'
 import ComplianceCard from './ComplianceOverviewCard.vue'
 import CompliantDetails from './CompliantDetails.vue'
 import NonCompliantDetails from './NonCompliantDetails.vue'
-import { ICompany } from '../interfaces/store/company'
+import { Company } from '../interfaces/store/company'
 import { mapState } from 'vuex'
 import { IRootState } from '../interfaces/store/root'
 @Component<CurrentCompany>({
@@ -41,7 +41,7 @@ import { IRootState } from '../interfaces/store/root'
   }
 })
 export default class CurrentCompany extends VueStrong {
-  selectedCompany?: ICompany
+  selectedCompany?: Company
 
   complianceList = [
     { name: 'Ministry of Corporate Affairs', icon: 'mdi-alpha-m-circle' },

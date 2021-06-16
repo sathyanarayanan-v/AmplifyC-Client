@@ -2,8 +2,6 @@
   <v-app-bar clipped-left flat app height="80" color="#FFF">
     <div class=" nav-bar-items w-100 justify-space-between">
       <v-icon v-if="permanent[$vuetify.breakpoint.name]" @click="toggleDrawer">mdi-menu</v-icon>
-      <!-- <div class="ml-6"></div>
-      <div class="ml-6"></div> -->
       <v-img
         alt="Vuetify Logo"
         max-width="120"
@@ -12,7 +10,7 @@
         src="../assets/logo.png"
         transition="scale-transition"
       />
-      <h3 class="my-auto primary-text">{{ title }}</h3>
+      <h2 v-if="!permanent[$vuetify.breakpoint.name]" class="my-auto primary-text">{{ title }}</h2>
       <div class="app-secondary-nav-items">
         <div class="nav-item">
           <v-badge
@@ -28,9 +26,16 @@
           </v-badge>
           <v-menu bottom transition="scale-transition" class="nav-menu" content-class="custom-menu__content">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn class="ml-2 " icon v-bind="attrs" v-on="on">
-                <v-icon>mdi-account</v-icon>
-              </v-btn>
+              <v-avatar v-bind="attrs" v-on="on">
+                <v-img
+                  min-height="38"
+                  min-width="38"
+                  max-height="45"
+                  max-width="45"
+                  src="https://cdn.vuetifyjs.com/images/john.jpg"
+                  alt="John"
+                />
+              </v-avatar>
             </template>
 
             <v-list dense>
@@ -114,6 +119,5 @@ export default class TheToolBar extends VueStrong {
 <style scoped>
 ::v-deep .v-toolbar__content {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  padding-left: 0px;
 }
 </style>

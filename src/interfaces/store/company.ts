@@ -1,4 +1,4 @@
-export interface ICompany {
+export class Company {
   _id?: string
   incorporation_number?: string
   company_name?: string
@@ -27,13 +27,14 @@ export interface ICompany {
   createdByModel?: string
 }
 
-export interface INameSearchResult {
+export interface NameSearchResult {
   errors?: Array<{ errorCode: string; errorDescription: string }>
   success: 'false' | 'true'
   companies: Array<{ companyID: string; companyName: string }>
 }
-export interface ICompanyState {
-  companies: Array<ICompany>
-  selectedCompany: ICompany
-  nameSearchResults: INameSearchResult
+export interface CompanyState {
+  companies: Array<Company>
+  selectedCompany: Company
+  nameSearchResults: NameSearchResult
+  visibleCompanies: Array<Company>
 }
