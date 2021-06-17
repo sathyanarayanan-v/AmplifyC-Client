@@ -7,7 +7,7 @@
         max-width="120"
         height="60"
         width="120"
-        src="../assets/logo.png"
+        src="../assets/logo.svg"
         transition="scale-transition"
       />
       <h2 v-if="!permanent[$vuetify.breakpoint.name]" class="my-auto primary-text">{{ title }}</h2>

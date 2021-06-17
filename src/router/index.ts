@@ -25,6 +25,10 @@ import AmplifyCCurrentCompany from '@/components/CurrentCompany.vue'
 
 // Tools component importw
 import AmplifyCTools from '@/views/Tools.vue'
+import AmplifyCMCATools from '@/components/MCATools.vue'
+import AmplifyCGSTTools from '@/components/GSTTools.vue'
+import AmplifyCSearchTaxPayerByPan from '@/components/SearchTaxPayerByPan.vue'
+import AmplifyCGstToolSelector from '@/components/GSTToolsSelector.vue'
 
 Vue.use(VueRouter)
 
@@ -115,10 +119,52 @@ const routes: Array<RouteConfig> = [
           {
             path: 'tools',
             name: 'amplifyc-my-tools',
+            redirect: { name: 'amplifyc-mca-tools' },
             component: AmplifyCTools,
             meta: {
               title: 'Tools'
-            }
+            },
+            children: [
+              {
+                path: 'mca',
+                name: 'amplifyc-mca-tools',
+                component: AmplifyCMCATools,
+                meta: {
+                  title: 'MCA Tool',
+                  mca: true
+                }
+              },
+              {
+                path: 'gst',
+                name: 'amplifyc-gst-tools',
+                component: AmplifyCGSTTools,
+                redirect: { name: 'amplifyc-gst-tools-selector' },
+                meta: {
+                  title: 'GST Tool',
+                  gst: true
+                },
+                children: [
+                  {
+                    path: 'select',
+                    component: AmplifyCGstToolSelector,
+                    name: 'amplifyc-gst-tools-selector',
+                    meta: {
+                      title: 'GST Tool',
+                      gst: true
+                    }
+                  },
+                  {
+                    path: 'searchtp/pan',
+                    name: 'amplifyc-gst-tools-search-taxpayer-by-pan',
+                    component: AmplifyCSearchTaxPayerByPan,
+                    meta: {
+                      title: 'Search Taxpayer',
+                      gst: true
+                    }
+                  }
+                ]
+              }
+            ]
           },
           {
             path: 'profile',

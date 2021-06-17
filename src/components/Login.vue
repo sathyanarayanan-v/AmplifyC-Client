@@ -3,7 +3,7 @@
     <v-row>
       <v-col class="align-self-center hidden-md-and-down">
         <v-container
-          ><v-img height="320" width="300" class="mx-auto" src="../assets/logo.png"></v-img>
+          ><v-img height="320" width="300" class="mx-auto" src="../assets/logo.svg"></v-img>
           <h2 class="text-center">
             Boost your clients and increase your revenue!
           </h2></v-container

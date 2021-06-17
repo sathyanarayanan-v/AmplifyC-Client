@@ -17,7 +17,7 @@
       <v-card width="100%" class="" elevation="0">
         <v-row>
           <v-col lg="12" md="6" sm="6" xl="12" cols="12" class="pb-0 ma-auto">
-            <h3 class="font-weight-black primary-text mb-4 text-center">You have new Clients? Add them!</h3>
+            <h3 class="font-weight-black primary-text mb-2 text-center">You have new Clients? Add them!</h3>
           </v-col>
           <v-col lg="12" md="6" sm="6" xl="12" cols="12" class="pb-0">
             <add-company />

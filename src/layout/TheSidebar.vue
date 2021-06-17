@@ -7,6 +7,7 @@
     elevation="4"
     app
     clipped
+    expand-on-hover
     :permanent="permanent[$vuetify.breakpoint.name]"
     :mini-variant.sync="mini"
     mini-variant-width="75"

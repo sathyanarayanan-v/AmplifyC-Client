@@ -18,3 +18,8 @@ export interface IGstState {
   selectedGst: IGst
   captcha: ICaptcha
 }
+export interface ISearchTaxpayerByPAN {
+  pan: string
+  idToken: string
+  captcha: string
+}

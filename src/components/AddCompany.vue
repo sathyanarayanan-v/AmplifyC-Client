@@ -8,7 +8,7 @@
     transition="dialog-bottom-transition"
   >
     <template v-slot:activator="{ on, attrs }">
-      <v-btn v-on="on" v-bind="attrs" class="mb-0 text-capitalize bg-primary white--text" block>
+      <v-btn v-on="on" v-bind="attrs" class="mb-0 mt-2 text-capitalize bg-primary white--text" block>
         <v-icon class="mr-2">mdi-plus-circle-outline</v-icon>
         <h4>Add Company</h4>
       </v-btn>
@@ -23,7 +23,7 @@
             alt="Vuetify Logo"
             max-height="63"
             max-width="120"
-            src="../assets/logo.png"
+            src="../assets/logo.svg"
             transition="scale-transition"
           />
         </div>
@@ -112,12 +112,12 @@
             <!-- Dummy Col -->
             <v-col cols="0" sm="0" lg="3" xl="3" md="0" xs="0"></v-col>
             <v-col cols="12" sm="12" lg="6" xl="6" md="12" xs="12" class="d-flex justify-center">
-              <v-btn :disabled="!valid" :loading="isSubmitting" @click="submit" class="bg-success mr-2 text-capitalize"
-                ><v-icon class="mr-2">mdi-check-decagram</v-icon>Sumbit
-              </v-btn>
-              <v-btn class="bg-error ml-2 text-capitalize" @click="closeDialog"
+              <v-btn class="bg-error mr-2 text-capitalize" @click="closeDialog"
                 ><v-icon class="mr-2">mdi-close-circle-outline</v-icon>Cancel</v-btn
               >
+              <v-btn :disabled="!valid" :loading="isSubmitting" @click="submit" class="bg-success ml-2 text-capitalize"
+                ><v-icon class="mr-2">mdi-check-decagram</v-icon>Sumbit
+              </v-btn>
             </v-col>
             <!-- Dummy Col -->
             <v-col cols="0" sm="0" lg="3" xl="3" md="0" xs="0"></v-col>

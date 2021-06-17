@@ -1,7 +1,6 @@
 import { ICommit } from '@/interfaces/common.interface'
 import { IRootState } from '@/interfaces/store/root'
-import { AxiosResponse } from 'axios'
-import { ICaptcha, IGst, IGstState } from '@/interfaces/store/gst'
+import { ICaptcha, IGst, IGstState, ISearchTaxpayerByPAN } from '@/interfaces/store/gst'
 import { gstApi } from '@/api/modules/gst'
 import rootState from '@/store'
 const state: IGstState = {

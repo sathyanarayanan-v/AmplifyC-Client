@@ -41,9 +41,51 @@ export interface ICompanyMasterDataForTools {
   roc: string
   sub_category: string
 }
+
+export interface GSTFiling {
+  fy: string
+  taxp: string
+  mof: string
+  dof: string
+  rtnType: string
+  arn: string
+}
+
+export interface GSTMasterData {
+  ntcrbs: string
+  adhrVFlag: string
+  lgnm: string
+  stj: string
+  dty: string
+  cxdt: string
+  gstin: string
+  nba: Array<string>
+  ekycVFlag: string
+  cmpRt: string
+  rgdt: string
+  ctb: string
+  pradr: {
+    adr: string
+  }
+  sts: string
+  tradeNam: string
+  isFieldVisitConducted: string
+  ctj: string
+}
+
+export interface GSTResList {
+  gstin: string
+  authStatus: string
+  stateCd: string
+}
 export interface IToolsState {
   mca: {
     masterData: ICompanyMasterDataForTools
     filings: Array<MCAFilings>
+  }
+  gst: {
+    masterData: GSTMasterData
+    filings: Array<GSTFiling>
+    gstResults: Array<GSTResList>
   }
 }
