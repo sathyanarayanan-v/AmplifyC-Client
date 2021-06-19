@@ -54,7 +54,7 @@
         <v-btn class="bg-error text-capitalize mr-2">
           <v-icon class="mr-2">mdi-close-circle-outline</v-icon>Cancel
         </v-btn>
-        <v-btn :disabled="!valid" class="bg-success ml-2 text-capitalize" @click.prevent="submit">
+        <v-btn :disabled="!valid" class="bg-success ml-2 text-capitalize" :loading="loading" @click.prevent="submit">
           <v-icon class="mr-2">mdi-check-decagram</v-icon>Sumbit
         </v-btn>
       </v-row>
@@ -69,7 +69,6 @@
               </h4></v-toolbar-title
             >
             <v-divider class="mx-4" inset vertical></v-divider>
-            <!-- <v-spacer></v-spacer> -->
             <h4 class="primary-text">PAN: {{ resultPan }}</h4>
           </v-toolbar>
         </template>
@@ -119,6 +118,8 @@ export default class SearchTaxPayerByPan extends VueStrong {
   valid = false
   isResultLoaded = false
   resultPan = ''
+
+  loading = false
   image?: string
   idToken?: string
 
@@ -170,14 +171,18 @@ export default class SearchTaxPayerByPan extends VueStrong {
 
   async submit() {
     try {
+      this.loading = true
       const searchTaxPayerByPan = { pan: this.pan, idToken: this.idToken, captcha: this.captcha }
       await this.$store.dispatch('getGstByPan', searchTaxPayerByPan)
       this.resultPan = this.pan
       await this.getCaptcha()
       ;(this.$refs.gstSearchByPanForm as HTMLFormElement).reset()
       this.isResultLoaded = true
+      this.loading = false
     } catch (error) {
-      console.log(error)
+      return error
+    } finally {
+      this.loading = false
     }
   }
 

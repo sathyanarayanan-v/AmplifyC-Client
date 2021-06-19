@@ -78,6 +78,7 @@ export interface GSTResList {
   authStatus: string
   stateCd: string
 }
+
 export interface IToolsState {
   mca: {
     masterData: ICompanyMasterDataForTools

@@ -1,3 +1,5 @@
+import { GSTFiling } from './tools'
+
 export interface IGst {
   gstin: string
   incorporation_number: string

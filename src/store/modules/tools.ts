@@ -6,7 +6,8 @@ import {
   ICompanyMasterDataForTools,
   IMcaFilingsToolsResponse,
   GSTMasterData,
-  GSTResList
+  GSTResList,
+  GSTFiling
 } from '@/interfaces/store/tools'
 
 const state: IToolsState = {
@@ -25,6 +26,9 @@ const mutations = {
   },
   setGstSearchResults(state: IToolsState, res: Array<GSTResList>) {
     state.gst.gstResults = res
+  },
+  setGstFilings(state: IToolsState, res: Array<GSTFiling>) {
+    state.gst.filings = res
   }
 }
 const actions = {
@@ -48,6 +52,14 @@ const actions = {
     try {
       const gstSearchResults = await toolsApi.gst.searchTpByPan(reqBody)
       commit('setGstSearchResults', gstSearchResults)
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+  async getGstFilings({ commit }: ICommit, gstin: string) {
+    try {
+      const filings = await toolsApi.gst.getGstFilings(gstin)
+      commit('setGstFilings', filings)
     } catch (error) {
       return Promise.reject(error)
     }
