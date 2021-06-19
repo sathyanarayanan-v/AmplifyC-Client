@@ -4,6 +4,7 @@
       <v-col lg="4" xl="4" sm="12" md="12" cols="12">
         <h5 class="primary-text"><v-icon color="#0252cc" class="mr-2 mb-1">mdi-lock</v-icon>Enter required Details</h5>
       </v-col>
+      <!-- Dummy Column  -->
       <v-col lg="6" xl="6" sm="12" md="12" cols="12"></v-col>
     </v-row>
     <v-form v-model="valid">
@@ -38,11 +39,16 @@
             </v-btn>
           </div>
         </v-col>
+        <!-- Dummy Column  -->
         <v-col lg="6" xl="6"></v-col>
       </v-row>
       <mca-tools-result v-if="resultsLoaded && !isSubmitting" />
       <mca-tools-result-loader :value="loaderValue" v-if="isSubmitting && !resultsLoaded" />
-      <tools-awaiting-input v-if="!(resultsLoaded && isSubmitting) && initialised" />
+      <tools-awaiting-input
+        toolDescription="Type in your company name to get master data and filings in an instant!"
+        toolTitle="Masterdata and filings of MCA"
+        v-if="!(resultsLoaded && isSubmitting) && initialised"
+      />
     </v-form>
   </v-container>
 </template>

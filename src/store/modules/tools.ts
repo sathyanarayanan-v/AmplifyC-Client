@@ -44,7 +44,7 @@ const actions = {
       return Promise.reject(error)
     }
   },
-  async getGstMasterData({ commit }: ICommit, reqBody: ISearchTaxpayerByPAN) {
+  async getGstByPan({ commit }: ICommit, reqBody: ISearchTaxpayerByPAN) {
     try {
       const gstSearchResults = await toolsApi.gst.searchTpByPan(reqBody)
       commit('setGstSearchResults', gstSearchResults)
