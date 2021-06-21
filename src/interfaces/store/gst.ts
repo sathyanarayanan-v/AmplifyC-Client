@@ -25,3 +25,9 @@ export interface ISearchTaxpayerByPAN {
   idToken: string
   captcha: string
 }
+
+export interface IGetGstDetails {
+  gstin: string
+  idToken: string
+  captcha: string
+}

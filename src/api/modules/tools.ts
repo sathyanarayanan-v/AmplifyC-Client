@@ -1,5 +1,5 @@
 import axiosInstance from '@/api/axios'
-import { ISearchTaxpayerByPAN } from '@/interfaces/store/gst'
+import { IGetGstDetails, ISearchTaxpayerByPAN } from '@/interfaces/store/gst'
 import { ICompanyMasterDataForTools, IMcaFilingsToolsResponse } from '@/interfaces/store/tools'
 export const TOOLS_ROOT = 'tools'
 
@@ -7,6 +7,7 @@ const GET_COMPANY_MASTER_DATA = `${TOOLS_ROOT}/mca/master-data`
 const GET_MCA_FILINGS = `${TOOLS_ROOT}/mca/filings`
 const GET_GST_MASTER_DATA = `${TOOLS_ROOT}/gst/searchtp/pan`
 const GET_GST_FILINGS = `${TOOLS_ROOT}/gst/filings`
+const GET_GST_DETAILS = `${TOOLS_ROOT}/gst/details`
 
 export const toolsApi = {
   mca: {
@@ -17,6 +18,7 @@ export const toolsApi = {
   },
   gst: {
     searchTpByPan: (reqBody: ISearchTaxpayerByPAN) => axiosInstance.post(GET_GST_MASTER_DATA, reqBody),
-    getGstFilings: (gstin: string) => axiosInstance.post(GET_GST_FILINGS, { gstin })
+    getGstFilings: (gstin: string) => axiosInstance.post(GET_GST_FILINGS, { gstin }),
+    getGstDetails: (reqBody: IGetGstDetails) => axiosInstance.post(GET_GST_DETAILS, reqBody)
   }
 }

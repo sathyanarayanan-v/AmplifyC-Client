@@ -1,3 +1,4 @@
+import { IGetGstDetails } from '@/interfaces/store/gst'
 import { ISearchTaxpayerByPAN } from './../../interfaces/store/gst'
 import { toolsApi } from './../../api/modules/tools'
 import { ICommit } from '@/interfaces/common.interface'
@@ -60,6 +61,14 @@ const actions = {
     try {
       const filings = await toolsApi.gst.getGstFilings(gstin)
       commit('setGstFilings', filings)
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+  async getGstMasterData({ commit }: ICommit, reqBody: IGetGstDetails) {
+    try {
+      const masterData = await toolsApi.gst.getGstDetails(reqBody)
+      commit('setGstMasterData', masterData)
     } catch (error) {
       return Promise.reject(error)
     }

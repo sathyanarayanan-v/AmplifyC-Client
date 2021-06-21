@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row class="pa-2">
-      <v-col v-for="(item, idx) in gstTools" :key="idx" cols="12" xl="4" lg="4" md="6" sm="12">
+      <v-col v-for="(item, idx) in gstTools" :key="idx" cols="12" xl="4" lg="4" md="6" sm="6">
         <v-card class="pull-up client-list">
           <v-card-title style="height:96px" class="justify-center bg-lightBlue  justify-space-between"
             ><h5 class="primary-text text-center mx-auto">
@@ -36,7 +36,7 @@ export default class GSTToolsSelector extends VueStrong {
       icon: 'mdi-briefcase-check-outline',
       title: 'View your GST Details',
       description: 'Enter your GST number and check your GST details along with latest filings',
-      link: { name: 'amplifyc-companies' }
+      link: { name: 'amplifyc-gst-tools-details' }
     },
     {
       icon: 'mdi-book-check-outline',

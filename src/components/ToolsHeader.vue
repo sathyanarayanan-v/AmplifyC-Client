@@ -12,7 +12,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Watch } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator'
 import { VueStrong } from '../typedVue'
 @Component
 export default class ToolsHeader extends VueStrong {

@@ -30,6 +30,7 @@ import AmplifyCGSTTools from '@/components/GSTTools.vue'
 import AmplifyCSearchTaxPayerByPan from '@/components/SearchTaxPayerByPan.vue'
 import AmplifyCGstToolSelector from '@/components/GSTToolsSelector.vue'
 import AmplifyCGstFilings from '@/components/GetGSTFiling.vue'
+import AmplifyCGstDetails from '@/components/ToolsGSTDetails.vue'
 
 Vue.use(VueRouter)
 
@@ -169,6 +170,15 @@ const routes: Array<RouteConfig> = [
                     component: AmplifyCGstFilings,
                     meta: {
                       title: 'GST Filings',
+                      gst: true
+                    }
+                  },
+                  {
+                    path: 'details',
+                    name: 'amplifyc-gst-tools-details',
+                    component: AmplifyCGstDetails,
+                    meta: {
+                      title: 'GST Details',
                       gst: true
                     }
                   }
