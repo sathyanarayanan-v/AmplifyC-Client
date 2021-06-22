@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-form v-model="valid" class="mb-11" ref="gstSearchByPanForm">
+  <v-container fluid>
+    <v-form v-model="valid" class="mb-11" ref="gstDetailsForm">
       <v-row class="my-4">
         <v-col>
           <v-btn
@@ -51,14 +51,17 @@
         </v-col>
       </v-row>
       <v-row justify="center">
-        <v-btn class="bg-error text-capitalize mr-2">
-          <v-icon class="mr-2">mdi-close-circle-outline</v-icon>Cancel
-        </v-btn>
-        <v-btn :disabled="!valid" class="bg-success ml-2 text-capitalize" :loading="loading" @click.prevent="submit">
+        <v-btn :disabled="!valid" class="bg-success text-capitalize" :loading="loading" @click.prevent="submit">
           <v-icon class="mr-2">mdi-check-decagram</v-icon>Sumbit
         </v-btn>
       </v-row>
     </v-form>
+    <gst-details-result v-if="isResultLoaded" :gstin="resultGst" />
+    <tools-awaiting-input
+      v-if="!isResultLoaded"
+      toolDescription="Type in your gst number to get latest gst filings and gst details in an instant!"
+      toolTitle="Get your GST Details"
+    />
   </v-container>
 </template>
 
@@ -68,10 +71,16 @@ import { mapState } from 'vuex'
 import { IRootState } from '../interfaces/store/root'
 import { VueStrong } from '../typedVue'
 import { validateGST } from '../utils'
+import ToolsAwaitingInput from './ToolsAwaitingInput.vue'
+import ToolsGSTDetailsResult from './ToolsGSTDetailsResult.vue'
 
 @Component<ToolsGSTDetails>({
   async mounted() {
     await this.$store.dispatch('getCaptcha')
+  },
+  components: {
+    'gst-details-result': ToolsGSTDetailsResult,
+    'tools-awaiting-input': ToolsAwaitingInput
   },
   computed: {
     ...mapState({
@@ -120,11 +129,24 @@ export default class ToolsGSTDetails extends VueStrong {
   }
 
   async submit() {
-    await this.$store.dispatch('getGstMasterData', {
-      gstin: this.gst,
-      idToken: this.idToken,
-      captcha: this.captcha
-    })
+    this.loading = true
+    try {
+      await Promise.all([
+        this.$store.dispatch('getGstMasterData', {
+          gstin: this.gst,
+          idToken: this.idToken,
+          captcha: this.captcha
+        }),
+        this.$store.dispatch('getGstFilings', this.gst)
+      ])
+      this.resultGst = this.gst
+      this.isResultLoaded = true
+    } catch (error) {
+      return error
+    } finally {
+      this.loading = false
+      ;(this.$refs.gstDetailsForm as HTMLFormElement).reset()
+    }
   }
 }
 </script>

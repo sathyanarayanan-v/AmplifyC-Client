@@ -1,5 +1,17 @@
 <template>
   <v-container fluid>
+    <v-row class="my-4">
+      <v-col>
+        <v-btn
+          @click="$router.push({ name: 'amplifyc-gst-tools-selector' })"
+          class="text-capitalize elevation-0 mr-2 my-4  bg-primary menu-btn my-auto"
+          height="32"
+        >
+          <v-icon small class="mr-2">mdi-arrow-left</v-icon>
+          Back
+        </v-btn>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col lg="4" xl="4" sm="12" md="12" cols="12">
         <h5 class="primary-text"><v-icon color="#0252cc" class="mr-2 mb-1">mdi-lock</v-icon>Enter required Details</h5>

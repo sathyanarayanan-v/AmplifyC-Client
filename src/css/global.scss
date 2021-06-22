@@ -272,3 +272,8 @@ nav {
 .client-list {
   border: 1px solid rgba(0, 0, 0, 0.12) !important;
 }
+.gst-details-container {
+  > div {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+}
