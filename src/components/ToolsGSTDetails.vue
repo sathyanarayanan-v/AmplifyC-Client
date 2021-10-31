@@ -107,8 +107,8 @@ export default class ToolsGSTDetails extends VueStrong {
   captchaRules = [(value: string) => (value ? true : 'Captcha is required')]
 
   onGstInput() {
-    this.isResultLoaded = false
     if (this.gst) {
+      this.isResultLoaded = false
       this.gst = this.gst.toUpperCase()
     }
   }
@@ -130,6 +130,7 @@ export default class ToolsGSTDetails extends VueStrong {
 
   async submit() {
     this.loading = true
+    this.isResultLoaded = false
     try {
       await Promise.all([
         this.$store.dispatch('getGstMasterData', {
@@ -141,11 +142,12 @@ export default class ToolsGSTDetails extends VueStrong {
       ])
       this.resultGst = this.gst
       this.isResultLoaded = true
+      ;(this.$refs.gstDetailsForm as HTMLFormElement).reset()
     } catch (error) {
+      ;(this.$refs.gstDetailsForm as HTMLFormElement).reset()
       return error
     } finally {
       this.loading = false
-      ;(this.$refs.gstDetailsForm as HTMLFormElement).reset()
     }
   }
 }
