@@ -11,6 +11,6 @@ export const AuthGuard: NavigationGuard = async (to: Route, from: Route, next: N
     await store.dispatch('getCurrentUser')
     next()
   } catch (error) {
-    next()
+    next({ name: 'amplifyc-my-account-login', query: { redirectUrl: to.fullPath } })
   }
 }
