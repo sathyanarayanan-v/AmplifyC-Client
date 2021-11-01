@@ -3,6 +3,15 @@
   user-select: none;
   scrollbar-color: white white !important;
 }
+input,
+input:before,
+input:after {
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
 .centered {
   position: fixed;
   top: 50%;
